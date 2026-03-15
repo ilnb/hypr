@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+
+# Check release
+if [ ! -f /etc/arch-release ]; then
+  exit 0
+fi
+
+scrDir=$(dirname "$(realpath "$0")")
+cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/end4"
+fpk_exup="command -v flatpak >/dev/null && flatpak update"
+temp_file="${cache_dir}/update_info"
+aurhlpr="yay"
+[ -f "$temp_file" ] && source "$temp_file"
+
+# Trigger upgrade
+if [ "$1" == "up" ] ; then
+  if [ -f "$temp_file" ]; then
+    while IFS="=" read -r key value; do
+      case "$key" in
+        OFFICIAL_UPDATES) official=$value ;;
+        AUR_UPDATES) aur=$value ;;
+        FLATPAK_UPDATES) flatpak=$value ;;
+      esac
+    done < "$temp_file"
+
+    command="
+    sleep 0.2
+    fastfetch
+    printf '[Official] %-10s\n[AUR]      %-10s\n[Flatpak]  %-10s\n' '$official' '$aur' '$flatpak'
+    yay -Syu
+    $fpk_exup
+    read -n 1 -p 'Press any key to continue...'
+    "
+    term=$(grep -E '^\s*\$TERMINAL\s*=' "$HOME/.config/hypr/custom/env.conf" | cut -d '=' -f2 | xargs)
+    term=$(basename "$term")
+    if [[ "$term" == "ghostty" ]]; then
+      ghostty --title=update --command="$command"
+    elif [[ "$term" == "kitty" ]]; then
+      kitty --title systemupdate sh -c "${command}"
+    elif [[ "$term" == "wezterm.sh" ]]; then
+      $scrDir/wezterm.sh start -- sh -c "${command}"
+    elif [[ "$term" == "wezterm" ]]; then
+      wezterm start -- sh -c "${command}"
+    else
+      notify-send -u critical "Terminal Error" "Unknown terminal: $term"
+    fi
+  else
+    echo "No upgrade info found. Please run the script without parameters first."
+  fi
+    exit 0
+fi
+
+# Check for AUR updates
+aur=$(${aurhlpr} -Qua | wc -l) 
+ofc=$(CHECKUPDATES_DB=$(mktemp -u) checkupdates | wc -l)
+
+# Check for flatpak updates
+if command -v flatpak >/dev/null; then
+  fpk=$(flatpak remote-ls --updates | wc -l)
+  fpk_disp="\n󰏓 Flatpak $fpk"
+else
+  fpk=0
+  fpk_disp=""
+fi
+
+# Calculate total available updates
+upd=$(( ofc + aur + fpk ))
+# Prepare the upgrade info
+upgrade_info=$(cat <<EOF
+OFFICIAL_UPDATES=$ofc
+AUR_UPDATES=$aur
+FLATPAK_UPDATES=$fpk
+EOF
+)
+
+# Save the upgrade info
+echo "$upgrade_info" > "$temp_file"
+# Show tooltip
+if [ $upd -eq 0 ] ; then
+  upd="" #Remove Icon completely
+  # upd="󰮯"   #If zero Display Icon only
+  echo "{\"text\":\"$upd\", \"tooltip\":\"  Packages are up to date\"}"
+else
+  echo "{\"text\":\"󰮯 $upd\", \"tooltip\":\"󱓽  Official $ofc\n󱓾  AUR $aur$fpk_disp\"}"
+fi
