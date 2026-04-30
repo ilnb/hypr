@@ -130,7 +130,7 @@ bind(mm .. '+X', dsp.window.fullscreen { action = 'toggle', mode = 'maximized' }
 bind('ALT+Return', dsp.window.fullscreen { action = 'toggle', mode = 'fullscreen' }, { desc = 'Fullscreen' })
 
 for n = 10, 19 do
-  bind(mm .. '+ALT+code:' .. n, exec(Hypr.hypr_scripts .. '~/.config/hypr/hyprland/scripts/workspace_action.sh movetoworkspacesilent ' .. (n - 9)))
+  bind(mm .. '+ALT+code:' .. n, exec(Hypr.hypr_scripts .. '/workspace_action.sh movetoworkspacesilent ' .. (n - 9)))
 end
 
 bind(mm .. '+ALT+S', dsp.window.move { workspace = 'special:scratchpad' }, { desc = 'Send to scratchpad' })
