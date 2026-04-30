@@ -162,7 +162,7 @@ local curves = {
   { 'stall',                    { type = 'bezier', points = { { 1, -0.1 }, { 0.7, 0.85 } } } }
 }
 for _, curve in ipairs(curves) do
-  hl.curve(curve)
+  hl.curve(table.unpack(curve))
 end
 
 local anims = {
