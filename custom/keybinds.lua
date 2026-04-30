@@ -19,28 +19,28 @@ for key, dir in pairs(dirs) do
   bind(mm .. '+' .. key, dsp.focus { direction = dir })
 end
 local cmd = [[grep -q "true" <<< $(hyprctl activewindow -j | jq -r .floating) && hyprctl dispatch moveactive]]
-bind(mm .. '+Ctrl+H', exec(cmd .. ' -30 0 || hyprctl dispatch movewindow l'), { repeating = true })
-bind(mm .. '+Ctrl+L', exec(cmd .. ' 30 0  || hyprctl dispatch movewindow r'), { repeating = true })
-bind(mm .. '+Ctrl+K', exec(cmd .. ' 0 -30 || hyprctl dispatch movewindow u'), { repeating = true })
-bind(mm .. '+Ctrl+J', exec(cmd .. ' 0 30  || hyprctl dispatch movewindow d'), { repeating = true })
+bind(mm .. '+CTRL+H', exec(cmd .. ' -30 0 || hyprctl dispatch movewindow l'), { repeating = true })
+bind(mm .. '+CTRL+L', exec(cmd .. ' 30 0  || hyprctl dispatch movewindow r'), { repeating = true })
+bind(mm .. '+CTRL+K', exec(cmd .. ' 0 -30 || hyprctl dispatch movewindow u'), { repeating = true })
+bind(mm .. '+CTRL+J', exec(cmd .. ' 0 30  || hyprctl dispatch movewindow d'), { repeating = true })
 
 -- WORKSPACES
 for n = 1, 10 do
   local k = n == 10 and 0 or n
   bind(mm .. '+' .. k, dsp.focus { workspace = k })
-  bind(mm .. '+Shift+' .. k, dsp.window.move { workspace = k })
+  bind(mm .. '+SHIFT+' .. k, dsp.window.move { workspace = k })
 end
-bind(mm .. '+Alt+N', dsp.focus { workspace = 'r+1' })
-bind(mm .. '+Alt+P', dsp.focus { workspace = 'r-1' })
-bind(mm .. '+Ctrl+Alt+L', dsp.window.move { workspace = 'r+1' })
-bind(mm .. '+Ctrl+Alt+H', dsp.window.move { workspace = 'r-1' })
+bind(mm .. '+ALT+N', dsp.focus { workspace = 'r+1' })
+bind(mm .. '+ALT+P', dsp.focus { workspace = 'r-1' })
+bind(mm .. '+CTRL+ALT+L', dsp.window.move { workspace = 'r+1' })
+bind(mm .. '+CTRL+ALT+H', dsp.window.move { workspace = 'r-1' })
 
 -- UTILS
 bind(mm .. '+comma', exec('pkill -x rofi || ' .. Hypr.custom_scripts .. '/glyph-picker.sh'), { desc = 'Glyph picker' })
 bind(mm .. '+B', exec('pkill -x rofi || ' .. Hypr.custom_scripts .. '/pdf-selector.sh'), { desc = 'Pdf selector' })
-bind(mm .. '+Shift+B', exec('pkill -x rofi || ' .. Hypr.custom_scripts .. '/pdf-selector.sh hidden'))
+bind(mm .. '+SHIFT+B', exec('pkill -x rofi || ' .. Hypr.custom_scripts .. '/pdf-selector.sh hidden'))
 bind(mm .. '+P', qs_dsp 'regionScreenshot', { desc = 'Screen snip' })
-bind(mm .. '+Shift+U', exec(Hypr.custom_scripts .. '/update.sh up'), { desc = 'Run system update' })
+bind(mm .. '+SHIFT+U', exec(Hypr.custom_scripts .. '/update.sh up'), { desc = 'Run system update' })
 
 -- MEDIA
 bind('XF86AudioMute', exec 'wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle', { locked = true })
@@ -54,6 +54,6 @@ bind(mm .. '+C', exec(Hypr.hypr_scripts .. '/launch_first_available.sh'
     .. [[ "kitty -1 nvim"]]),
   { desc = 'Code editor' })
 bind(mm .. '+F', exec(Hypr.hypr_scripts .. '/launch_first_available.sh' .. [[ "zen-browser" "firefox" "brave" "librewolf"]]), { desc = 'Browser' })
-bind(mm .. '+Shift+M', exec 'flatpak run com.spotify.Client', { desc = 'Spotify' })
+bind(mm .. '+SHIFT+M', exec 'flatpak run com.spotify.Client', { desc = 'Spotify' })
 bind(mm .. '+D', exec 'vesktop', { desc = 'Discord' })
-bind(mm .. '+Shift+C', exec('env WC_KB=1 ' .. Hypr.custom_scripts .. '/wayclick.sh'), { desc = 'Toggle wayclick' })
+bind(mm .. '+SHIFT+C', exec('env WC_KB=1 ' .. Hypr.custom_scripts .. '/wayclick.sh'), { desc = 'Toggle wayclick' })
