@@ -20,7 +20,7 @@ bind(mm .. '+SUPER_R', function()
   exec 'qs -c ii ipc call TEST_ALIVE || pkill fuzzel || fuzzel'
 end, { ignore_mods = true })
 
-bind(mm .. '+catchall', qs_dsp 'searchToggleReleaseInterrupt', { transparent = true, ignore_mods = true, non_consuming = true })
+-- bind(mm .. '+catchall', qs_dsp 'searchToggleReleaseInterrupt', { transparent = true, ignore_mods = true, non_consuming = true })
 for _, k in ipairs {
   'CTRL+Super_L',
   'CTRL+Super_R',
