@@ -48,7 +48,7 @@ bind('CTRL+ALT+Delete', function()
   qs_dsp 'sessionToggle'
   exec(string.format('qs -c ii ipc call TEST_ALIVE || pkill wlogout || wlogout -p layer-shell', Hypr.qsConfig))
 end, { desc = 'Toggle session menu' })
-bind('SHIFT+Super+ALT+Slash', exec 'qs -p ~/.config/quickshell/ii/welcome.qml')
+bind('SHIFT+SUPER+ALT+Slash', exec 'qs -p ~/.config/quickshell/ii/welcome.qml')
 
 bind('XF86MonBrightnessUp', exec 'qs -c ii ipc call brightness increment || brightnessctl s 5%+', { locked = true, repeating = true })
 bind('XF86MonBrightnessDown', exec 'qs -c ii ipc call brightness decrement || brightnessctl s 5%-', { locked = true, repeating = true })
