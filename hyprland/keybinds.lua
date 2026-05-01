@@ -129,18 +129,19 @@ bind(mm .. '+ALT+Space', dsp.window.float { action = 'toggle' }, { desc = 'Float
 bind(mm .. '+X', dsp.window.fullscreen { action = 'toggle', mode = 'maximized' }, { desc = 'Maximize' })
 bind('ALT+Return', dsp.window.fullscreen { action = 'toggle', mode = 'fullscreen' }, { desc = 'Fullscreen' })
 
--- for n = 10, 19 do
---   bind(mm .. '+ALT+code:' .. n, exec(Hypr.hypr_scripts .. '/workspace_action.sh movetoworkspacesilent ' .. (n - 9)))
--- end
+for n = 1, 10 do
+  local i = n == 10 and 0 or n
+  bind(mm .. '+ALT+' .. i, exec(Hypr.hypr_scripts .. '/workspace_action.sh movetoworkspacesilent ' .. i))
+end
 
 bind(mm .. '+ALT+S', dsp.window.move { workspace = 'special:scratchpad' }, { desc = 'Send to scratchpad' })
 bind(mm .. '+S', dsp.workspace.toggle_special 'scratchpad', { desc = 'Toggle scratchpad' })
 
 -- WORKSPACE
 -- Switching
--- for n = 10, 19 do
---   bind(mm .. '+code:' .. n, exec(Hypr.hypr_scripts .. '/workspace_action.sh workspace' .. (n - 9)))
--- end
+for n = 10, 19 do
+  bind(mm .. '+code:' .. n, exec(Hypr.hypr_scripts .. '/workspace_action.sh workspace' .. (n - 9)))
+end
 
 -- VM
 bind(mm .. '+ALT+F1', function()
@@ -162,9 +163,9 @@ bind(mm .. '+CTRL+SHIFT+ALT+Delete', exec 'systemctl poweroff || loginctl powero
 -- SCREEN
 -- Zoom
 bind(mm .. '+Minus', exec '~/.config/hypr/hyprland/scripts/zoom.sh decrease 0.3', { desc = 'Zoom out', repeating = true })
--- bind(mm .. '+code:82', exec '~/.config/hypr/hyprland/scripts/zoom.sh decrease 0.3', { repeating = true })
+bind(mm .. '+code:82', exec '~/.config/hypr/hyprland/scripts/zoom.sh decrease 0.3', { repeating = true })
 bind(mm .. '+Plus', exec '~/.config/hypr/hyprland/scripts/zoom.sh increase 0.3', { desc = 'Zoom in', repeating = true })
--- bind(mm .. '+code:86', exec '~/.config/hypr/hyprland/scripts/zoom.sh increase 0.3', { repeating = true })
+bind(mm .. '+code:86', exec '~/.config/hypr/hyprland/scripts/zoom.sh increase 0.3', { repeating = true })
 
 -- MEDIA
 bind(mm .. '+SHIFT+N',
