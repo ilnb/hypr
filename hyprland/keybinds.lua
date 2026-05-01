@@ -14,8 +14,7 @@ bind(mm .. '+Super_L', qs_dsp 'searchToggleRelease', { release = true, desc = 'T
 bind(mm .. '+Super_L', exec 'qs -c ii ipc call TEST_ALIVE || pkill fuzzel || fuzzel')
 bind(mm .. '+Super_R', qs_dsp 'searchToggleRelease', { release = true })
 bind(mm .. '+Super_R', exec 'qs -c ii ipc call TEST_ALIVE || pkill fuzzel || fuzzel')
--- local x = bind(mm, qs_dsp 'searchToggleReleaseInterrupt', { transparent = true, ignore_mods = true, non_consuming = true })
--- x.catchall = true
+bind(mm, qs_dsp 'searchToggleReleaseInterrupt', { transparent = true, release = true, non_consuming = true })
 for _, k in ipairs {
   'CTRL+Super_L',
   'CTRL+Super_R',
@@ -129,7 +128,7 @@ bind(mm .. '+ALT+F1', exec [[hyprctl dispatch "hl.dsp.submap 'virtual-machine'"]
 
 hl.define_submap('virtual-machine', function()
   bind(mm .. '+ALT+F1', exec [[notify-send 'Exited Virtual Machine submap' 'Keybinds re-enabled' -a 'Hyprland']], { desc = 'Enable keybinds' })
-  bind(mm .. '+ALT+F1', exec [[hyprctl dispatch "hl.dsp.submap 'global'"]])
+  bind(mm .. '+ALT+F1', exec [[hyprctl dispatch "hl.dsp.submap 'default'"]])
 end)
 
 -- Session
