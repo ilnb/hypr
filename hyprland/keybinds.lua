@@ -139,8 +139,9 @@ bind(mm .. '+S', dsp.workspace.toggle_special 'scratchpad', { desc = 'Toggle scr
 
 -- WORKSPACE
 -- Switching
-for n = 10, 19 do
-  bind(mm .. '+code:' .. n, exec(Hypr.hypr_scripts .. '/workspace_action.sh workspace' .. (n - 9)))
+for n = 1, 10 do
+  local i = n == 10 and 0 or n
+  bind(mm .. '+' .. i, exec(Hypr.hypr_scripts .. '/workspace_action.sh workspace' .. i))
 end
 
 -- VM
