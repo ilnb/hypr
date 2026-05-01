@@ -89,7 +89,7 @@ bind(mm .. '+SHIFT+ALT+mouse:273',
   { desc = 'Generate AI summary for selected text' })
 
 -- WINDOW
--- focusing
+-- Focusing
 bind(mm .. '+mouse:272', dsp.window.move, { desc = 'Move window', mouse = true })
 bind(mm .. '+mouse:274', dsp.window.move, { mouse = true })
 bind(mm .. '+mouse:273', dsp.window.resize, { desc = 'Resize window', mouse = true })
@@ -99,7 +99,7 @@ end
 bind(mm .. '+Q', dsp.window.close(), { desc = 'Close' })
 bind(mm .. '+SHIFT+Q', dsp.window.kill(), { desc = 'Forcefully zap a window' })
 
--- split ratio
+-- Split ratio
 bind(mm .. '+Apostrophe', dsp.layout 'splitratio +0.1', { desc = 'Adjust split +x/+y', repeating = true })
 bind(mm .. '+Semicolon', dsp.layout 'splitratio -0.1', { desc = 'Adjust split -x/-y', repeating = true })
 bind(mm .. '+ALT+Space', dsp.window.float { action = 'toggle' }, { desc = 'Float' })

@@ -15,16 +15,13 @@ require 'hyprland.execs'
 require 'hyprland.general'
 require 'hyprland.rules'
 require 'hyprland.colors'
+require 'hyprland.keybinds'
 
 require 'custom.execs'
 require 'custom.general'
 require 'custom.rules'
+require 'custom.keybinds'
 
 require 'workspaces'
 require 'monitors'
 require 'nvidia'
-
-hl.define_submap('global', function()
-  require 'hyprland.keybinds'
-  require 'custom.keybinds'
-end)
