@@ -164,9 +164,9 @@ bind(mm .. '+CTRL+SHIFT+ALT+Delete', exec 'systemctl poweroff || loginctl powero
 -- SCREEN
 -- Zoom
 bind(mm .. '+Minus', exec '~/.config/hypr/hyprland/scripts/zoom.sh decrease 0.3', { desc = 'Zoom out', repeating = true })
-bind(mm .. '+code:82', exec '~/.config/hypr/hyprland/scripts/zoom.sh decrease 0.3', { repeating = true })
+-- bind(mm .. '+code:82', exec '~/.config/hypr/hyprland/scripts/zoom.sh decrease 0.3', { repeating = true })
 bind(mm .. '+Plus', exec '~/.config/hypr/hyprland/scripts/zoom.sh increase 0.3', { desc = 'Zoom in', repeating = true })
-bind(mm .. '+code:86', exec '~/.config/hypr/hyprland/scripts/zoom.sh increase 0.3', { repeating = true })
+-- bind(mm .. '+code:86', exec '~/.config/hypr/hyprland/scripts/zoom.sh increase 0.3', { repeating = true })
 
 -- MEDIA
 bind(mm .. '+SHIFT+N',
