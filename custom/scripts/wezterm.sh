@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 if ! command -v wezterm >/dev/null; then
+  notify-send 'Wezterm not found'
   exit 1
 fi
 
