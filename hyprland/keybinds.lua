@@ -14,7 +14,8 @@ bind(mm .. '+SUPER_L', qs_dsp 'searchToggleRelease', { ignore_mods = true, desc 
 bind(mm .. '+SUPER_L', exec 'qs -c ii ipc call TEST_ALIVE || pkill fuzzel || fuzzel', { ignore_mods = true })
 bind(mm .. '+SUPER_R', qs_dsp 'searchToggleRelease', { ignore_mods = true })
 bind(mm .. '+SUPER_R', exec 'qs -c ii ipc call TEST_ALIVE || pkill fuzzel || fuzzel', { ignore_mods = true })
--- bind(mm .. '+catchall', qs_dsp 'searchToggleReleaseInterrupt', { transparent = true, ignore_mods = true, non_consuming = true })
+local x = bind(mm, qs_dsp 'searchToggleReleaseInterrupt', { transparent = true, ignore_mods = true, non_consuming = true })
+x.catchall = true
 for _, k in ipairs {
   'CTRL+Super_L',
   'CTRL+Super_R',
