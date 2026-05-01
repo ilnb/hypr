@@ -10,12 +10,12 @@ local qs_dsp = function(str)
 end
 
 -- SHELL
-bind(mm .. '+SUPER_L', qs_dsp 'searchToggleRelease', { ignore_mods = true, desc = 'Toggle search' })
-bind(mm .. '+SUPER_L', exec 'qs -c ii ipc call TEST_ALIVE || pkill fuzzel || fuzzel', { ignore_mods = true })
-bind(mm .. '+SUPER_R', qs_dsp 'searchToggleRelease', { ignore_mods = true })
-bind(mm .. '+SUPER_R', exec 'qs -c ii ipc call TEST_ALIVE || pkill fuzzel || fuzzel', { ignore_mods = true })
-local x = bind(mm, qs_dsp 'searchToggleReleaseInterrupt', { transparent = true, ignore_mods = true, non_consuming = true })
-x.catchall = true
+bind(mm .. '+Super_L', qs_dsp 'searchToggleRelease', { release = true, desc = 'Toggle search' })
+bind(mm .. '+Super_L', exec 'qs -c ii ipc call TEST_ALIVE || pkill fuzzel || fuzzel')
+bind(mm .. '+Super_R', qs_dsp 'searchToggleRelease', { release = true })
+bind(mm .. '+Super_R', exec 'qs -c ii ipc call TEST_ALIVE || pkill fuzzel || fuzzel')
+-- local x = bind(mm, qs_dsp 'searchToggleReleaseInterrupt', { transparent = true, ignore_mods = true, non_consuming = true })
+-- x.catchall = true
 for _, k in ipairs {
   'CTRL+Super_L',
   'CTRL+Super_R',
@@ -25,7 +25,7 @@ for _, k in ipairs {
   bind(k, qs_dsp 'searchToggleReleaseInterrupt')
 end
 for n = 272, 277 do
-  bind(mm .. '+mouse:' .. n, qs_dsp 'searchToggleReleaseInterrupt')
+  bind(mm .. '+mouse:' .. n, qs_dsp 'searchToggleReleaseInterrupt', { mouse = true })
 end
 
 bind('Super_L', qs_dsp 'workspaceNumber', { transparent = true })
