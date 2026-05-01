@@ -103,7 +103,7 @@ hl.window_rule {
 -- Workspace rules
 hl.workspace_rule {
   workspace = 'special:special',
-  gapsout = 30,
+  gaps_out = 30,
 }
 
 -- Layer rules

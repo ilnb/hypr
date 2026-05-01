@@ -89,7 +89,6 @@ hl.config {
 
     shadow = {
       enabled = true,
-      ignore_window = true,
       range = 50,
       offset = { 0, 4 },
       render_power = 10,
@@ -121,7 +120,6 @@ hl.config {
   misc       = {
     disable_hyprland_logo = true,
     disable_splash_rendering = true,
-    vfr = 1,
     vrr = 1,
     mouse_move_enables_dpms = true,
     key_press_enables_dpms = true,

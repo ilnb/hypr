@@ -46,7 +46,7 @@ bind(mm .. '+SHIFT+U', exec(Hypr.custom_scripts .. '/update.sh up'), { desc = 'R
 bind('XF86AudioMute', exec 'wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle', { locked = true })
 bind('F11', exec 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-', { desc = 'Decrease volume', locked = true, repeating = true })
 bind('F12', exec 'wpctl set-volume -l 1.53 @DEFAULT_AUDIO_SINK@ 5%+', { desc = 'Increase volume', locked = true, repeating = true })
-bind('code:248', exec 'wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle', { desc = 'Toggle microphone mute', locked = true })
+-- bind('code:248', exec 'wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle', { desc = 'Toggle microphone mute', locked = true })
 
 -- APPS
 bind(mm .. '+C', exec(Hypr.hypr_scripts .. '/launch_first_available.sh'
