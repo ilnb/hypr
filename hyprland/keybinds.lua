@@ -1,4 +1,3 @@
-Hypr.mainMod = 'SUPER'
 local mm = Hypr.mainMod
 
 local bind = hl.bind
