@@ -3,7 +3,7 @@ local exec = hl.exec_cmd
 hl.on('hyprland.start', function()
   -- Bar, wallpaper
   exec(Hypr.hypr_scripts .. '/start_geoclue_agent.sh')
-  exec('qs -c ' .. Hypr.qsConfig .. ' &')
+  exec('qs -c ii &')
   exec(Hypr.custom_scripts .. '/__restore_video_wallpaper.sh')
 
   -- Core components (authentication, lock screen, notification daemon)
@@ -17,15 +17,15 @@ hl.on('hyprland.start', function()
 
   -- Clipboard: history
   -- exec 'wl-paste --watch cliphist store &'
-  exec(string.format(
+  exec(
     "wl-paste --type text --watch "
     .. "bash -c 'cliphist store && "
-    .. "qs -c %s ipc call cliphistService update''", Hypr.qsConfig)
+    .. "qs -c ii ipc call cliphistService update''"
   )
-  exec(string.format(
+  exec(
     "wl-paste --type image --watch "
     .. "bash -c 'cliphist store && "
-    .. "qs -c %s ipc call cliphistService update''", Hypr.qsConfig)
+    .. "qs -c ii ipc call cliphistService update''"
   )
 
   -- Cursor
