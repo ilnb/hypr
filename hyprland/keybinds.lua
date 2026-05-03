@@ -12,11 +12,11 @@ end
 -- SHELL
 bind(mm .. '+Super_L', function()
   qs_dsp 'searchToggleRelease' ()
-  exec 'qs -c ii ipc call TEST_ALIVE || pkill fuzzel || fuzzel' ()
+  return exec 'qs -c ii ipc call TEST_ALIVE || pkill fuzzel || fuzzel'
 end, { release = true, desc = 'Toggle search' })
 bind(mm .. '+Super_R', function()
   qs_dsp 'searchToggleRelease' ()
-  exec 'qs -c ii ipc call TEST_ALIVE || pkill fuzzel || fuzzel' ()
+  return exec 'qs -c ii ipc call TEST_ALIVE || pkill fuzzel || fuzzel'
 end, { release = true })
 bind(mm, qs_dsp 'searchToggleReleaseInterrupt', { transparent = true, release = true, non_consuming = true })
 for _, k in ipairs {
@@ -44,7 +44,7 @@ bind(mm .. '+G', qs_dsp 'overlayToggle')
 bind(mm .. '+SHIFT+J', qs_dsp 'barToggle', { desc = 'Toggle bar' })
 bind('CTRL+ALT+Delete', function()
   qs_dsp 'sessionToggle' ()
-  exec 'qs -c ii ipc call TEST_ALIVE || pkill wlogout || wlogout -p layer-shell' ()
+  return exec 'qs -c ii ipc call TEST_ALIVE || pkill wlogout || wlogout -p layer-shell'
 end, { desc = 'Toggle session menu' })
 bind('SHIFT+SUPER+ALT+Slash', exec 'qs -p ~/.config/quickshell/ii/welcome.qml')
 
@@ -58,7 +58,7 @@ bind('ALT+XF86AudioMute', exec 'wpctl set-mute @DEFAULT_SOURCE@ toggle', { locke
 bind(mm .. '+ALT+M', exec 'wpctl set-mute @DEFAULT_SOURCE@ toggle', { desc = 'Toggle mic', locked = true })
 bind(mm .. '+CTRL+T', function()
   qs_dsp 'wallpaperSelectorToggle' ()
-  exec 'qs -c ii ipc call TEST_ALIVE || ~/.config/quickshell/ii/scripts/colors/switchwall.sh' ()
+  return exec 'qs -c ii ipc call TEST_ALIVE || ~/.config/quickshell/ii/scripts/colors/switchwall.sh'
 end, { desc = 'Toggle wallpaper selector' })
 bind(mm .. '+CTRL+ALT+T', qs_dsp 'wallpaperSelectorRandom', { desc = 'Select random wallpaper' })
 bind(mm .. '+CTRL+R', exec 'killall ags qgsv1 gjs ydotool qs quickshell; qs -c ii', { desc = 'Restart Widgets' })
@@ -66,21 +66,21 @@ bind(mm .. '+CTRL+R', exec 'killall ags qgsv1 gjs ydotool qs quickshell; qs -c i
 -- UTILS
 bind(mm .. '+V', function()
   qs_dsp 'overviewClipboardToggle' ()
-  exec 'qs -c ii ipc call TEST_ALIVE || pkill fuzzel || cliphist list | fuzzel --match-mode fzf --dmenu | cliphist decode | wl-copy' ()
+  return exec 'qs -c ii ipc call TEST_ALIVE || pkill fuzzel || cliphist list | fuzzel --match-mode fzf --dmenu | cliphist decode | wl-copy'
 end, { desc = 'Clipboard history >> clipboard' })
 bind(mm .. '+Period', function()
   qs_dsp 'overviewEmojiToggle' ()
-  exec 'qs -c ii ipc call TEST_ALIVE || pkill fuzzel || ~/.config/hypr/hyprland/scripts/fuzzel-emoji.sh copy' ()
+  return exec 'qs -c ii ipc call TEST_ALIVE || pkill fuzzel || ~/.config/hypr/hyprland/scripts/fuzzel-emoji.sh copy'
 end, { desc = 'Emoji >> clipboard' })
 
 -- OCR
 bind(mm .. '+SHIFT+A', function()
   qs_dsp 'regionSearch' ()
-  exec 'exec, qs -c ii ipc call TEST_ALIVE || pidof slurp || ~/.config/hypr/hyprland/scripts/snip_to_search.sh' ()
+  return exec 'exec, qs -c ii ipc call TEST_ALIVE || pidof slurp || ~/.config/hypr/hyprland/scripts/snip_to_search.sh'
 end, { desc = 'Google Lens' })
 bind(mm .. '+SHIFT+X', function()
   qs_dsp 'regionOcr' ()
-  exec [[qs -c ii ipc call TEST_ALIVE || pidof slurp || grim -g "$(slurp $SLURP_ARGS]]()
+  return exec [[qs -c ii ipc call TEST_ALIVE || pidof slurp || grim -g "$(slurp $SLURP_ARGS]]
 end, { desc = 'OCR >> clipboard' })
 -- Color picker
 bind(mm .. '+CTRL+P', exec 'hyprpicker -a', { desc = 'Color picker' })
@@ -88,20 +88,20 @@ bind(mm .. '+CTRL+P', exec 'hyprpicker -a', { desc = 'Color picker' })
 bind('Print', exec 'grim - | wl-copy', { desc = 'Screenshot >> clipboard', locked = true })
 bind(mm .. '+SHIFT+S', function()
   qs_dsp 'regionScreenshot' ()
-  exec 'qs -c ii ipc call TEST_ALIVE || pidof slurp || hyprshot --freeze --clipboard-only --mode region --silent' ()
+  return exec 'qs -c ii ipc call TEST_ALIVE || pidof slurp || hyprshot --freeze --clipboard-only --mode region --silent'
 end, { desc = 'Screen snip' })
 bind('CTRL+Print', function()
   exec [[mkdir -p $(xdg-user-dir PICTURES)/Screenshots && grim $(xdg-user-dir PICTURES)/Screenshots/Screenshot_"$(date '+%Y-%m-%d_%H.%M.%S')".png]]
-  exec 'grim - | wl-copy' ()
+  return exec 'grim - | wl-copy'
 end, { desc = 'Screenshot >> clipboard & file', locked = true, non_consuming = true })
 -- Recording stuff
 bind(mm .. '+SHIFT+R', function()
   qs_dsp 'regionRecord' ()
-  exec 'qs -c ii ipc call TEST_ALIVE || ~/.config/quickshell/ii/scripts/videos/record.sh' ()
+  return exec 'qs -c ii ipc call TEST_ALIVE || ~/.config/quickshell/ii/scripts/videos/record.sh'
 end, { desc = 'Record region (no sound)', locked = true })
 bind(mm .. '+ALT+R', function()
   qs_dsp 'regionRecord' ()
-  exec 'qs -c ii ipc call TEST_ALIVE || ~/.config/quickshell/ii/scripts/videos/record.sh' ()
+  return exec 'qs -c ii ipc call TEST_ALIVE || ~/.config/quickshell/ii/scripts/videos/record.sh'
 end, { locked = true })
 bind('CTRL+ALT+R', exec '~/.config/quickshell/ii/scripts/videos/record.sh --fullscreen', { desc = 'Record fullscreen (no sound)', locked = true })
 bind(mm .. '+SHIFT+ALT+R', exec '~/.config/quickshell/ii/scripts/videos/record.sh --fullscreen --sound', { desc = 'Record fullscreen', locked = true })
@@ -143,13 +143,13 @@ end
 -- VM
 bind(mm .. '+ALT+F1', function()
   exec [[notify-send 'Entered Virtual Machine submap' 'Keybinds disabled. Hit Super+ALT+F1 to escape' -a 'Hyprland']]
-  exec [[hyprctl dispatch "hl.dsp.submap 'virtual-machine'"]]()
+  return exec [[hyprctl dispatch "hl.dsp.submap 'virtual-machine'"]]
 end, { desc = 'Disable keybinds' })
 
 hl.define_submap('virtual-machine', function()
   bind(mm .. '+ALT+F1', function()
     exec [[notify-send 'Exited Virtual Machine submap' 'Keybinds re-enabled' -a 'Hyprland']]
-    exec [[hyprctl dispatch "hl.dsp.submap 'default'"]]()
+    return exec [[hyprctl dispatch "hl.dsp.submap 'default'"]]
   end, { desc = 'Enable keybinds' })
 end)
 
