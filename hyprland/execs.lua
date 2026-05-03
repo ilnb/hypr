@@ -14,6 +14,7 @@ hl.on('hyprland.start', function()
 
   -- Audio
   exec 'easyeffects --hide-window --service-mode'
+
   -- Clipboard: history
   -- exec 'wl-paste --watch cliphist store &'
   exec(string.format(
