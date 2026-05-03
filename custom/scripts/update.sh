@@ -33,6 +33,7 @@ if [ "$1" == "up" ] ; then
     "
     term=$(grep -E '^\s*\$TERMINAL\s*=' "$HOME/.config/hypr/custom/env.conf" | cut -d '=' -f2 | xargs)
     term=$(basename "$term")
+    term="${term:-$TERMINAL}"
     if [[ "$term" == "ghostty" ]]; then
       ghostty --title=update --command="$command"
     elif [[ "$term" == "kitty" ]]; then

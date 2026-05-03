@@ -18,3 +18,4 @@ env('PATH',
 )
 
 env('EDITOR', Hypr.editor)
+env('TERMINAL', Hypr.terminal)
