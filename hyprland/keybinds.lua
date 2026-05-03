@@ -141,13 +141,13 @@ end
 
 -- VM
 bind(mm .. '+ALT+F1', function()
-  exec [[notify-send 'Entered Virtual Machine submap' 'Keybinds disabled. Hit Super+ALT+F1 to escape' -a 'Hyprland']]
+  exec [[notify-send 'Entered Virtual Machine submap' 'Keybinds disabled. Hit Super+ALT+F1 to escape' -a 'Hyprland']]()
   exec [[hyprctl dispatch "hl.dsp.submap 'virtual-machine'"]]()
 end, { desc = 'Disable keybinds' })
 
 hl.define_submap('virtual-machine', function()
   bind(mm .. '+ALT+F1', function()
-    exec [[notify-send 'Exited Virtual Machine submap' 'Keybinds re-enabled' -a 'Hyprland']]
+    exec [[notify-send 'Exited Virtual Machine submap' 'Keybinds re-enabled' -a 'Hyprland']]()
     exec [[hyprctl dispatch "hl.dsp.submap 'default'"]]()
   end, { desc = 'Enable keybinds' })
 end)
