@@ -32,7 +32,7 @@ hl.on('hyprland.start', function()
   exec 'hyprctl setcursor Bibata-Modern-Classic 24'
 
   -- Global submap
-  exec [[hyprctl dispatch "hl.dsp.submap 'global'"]]
+  -- exec [[hyprctl dispatch "hl.dsp.submap 'global'"]]
 
   -- Fix dock pinned apps not launching properly (https://github.com/end-4/dots-hyprland/issues/2200)
   -- This causes https://github.com/end-4/dots-hyprland/issues/2427

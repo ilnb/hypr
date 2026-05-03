@@ -148,7 +148,7 @@ end, { desc = 'Disable keybinds' })
 hl.define_submap('virtual-machine', function()
   bind(mm .. '+ALT+F1', function()
     exec [[notify-send 'Exited Virtual Machine submap' 'Keybinds re-enabled' -a 'Hyprland']]()
-    exec [[hyprctl dispatch "hl.dsp.submap 'default'"]]()
+    exec [[hyprctl dispatch "hl.dsp.submap 'reset'"]]()
   end, { desc = 'Enable keybinds' })
 end)
 
