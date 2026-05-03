@@ -1,6 +1,7 @@
 local home = os.getenv 'HOME'
 
 _G.Hypr = {}
+Hypr.mainMod = 'SUPER'
 Hypr.qsConfig = 'ii'
 Hypr.editor = 'nvim'
 Hypr.explorer = 'thunar'
@@ -8,7 +9,6 @@ Hypr.browser = 'zen-browser'
 Hypr.hypr_scripts = home .. '/.config/hypr/hyprland/scripts'
 Hypr.custom_scripts = home .. '/.config/hypr/custom/scripts'
 Hypr.terminal = Hypr.custom_scripts .. '/wezterm.sh'
-Hypr.mainMod = 'SUPER'
 
 require 'hyprland.env'
 require 'custom.env'
