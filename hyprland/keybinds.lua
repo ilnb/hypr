@@ -10,10 +10,14 @@ local qs_dsp = function(str)
 end
 
 -- SHELL
-bind(mm .. '+Super_L', qs_dsp 'searchToggleRelease', { release = true, desc = 'Toggle search' })
-bind(mm .. '+Super_L', exec 'qs -c ii ipc call TEST_ALIVE || pkill fuzzel || fuzzel')
-bind(mm .. '+Super_R', qs_dsp 'searchToggleRelease', { release = true })
-bind(mm .. '+Super_R', exec 'qs -c ii ipc call TEST_ALIVE || pkill fuzzel || fuzzel')
+bind(mm .. '+Super_L', function()
+  qs_dsp 'searchToggleRelease' ()
+  exec 'qs -c ii ipc call TEST_ALIVE || pkill fuzzel || fuzzel' ()
+end, { release = true, desc = 'Toggle search' })
+bind(mm .. '+Super_R', function()
+  qs_dsp 'searchToggleRelease' ()
+  exec 'qs -c ii ipc call TEST_ALIVE || pkill fuzzel || fuzzel' ()
+end, { release = true })
 bind(mm, qs_dsp 'searchToggleReleaseInterrupt', { transparent = true, release = true, non_consuming = true })
 for _, k in ipairs {
   'CTRL+Super_L',
@@ -38,8 +42,10 @@ bind(mm .. '+SHIFT+K', qs_dsp 'oskToggle', { desc = 'Toggle on-screen keyboard' 
 bind(mm .. '+M', qs_dsp 'mediaControlsToggle', { desc = 'Toggle media controls' })
 bind(mm .. '+G', qs_dsp 'overlayToggle')
 bind(mm .. '+SHIFT+J', qs_dsp 'barToggle', { desc = 'Toggle bar' })
-bind('CTRL+ALT+Delete', qs_dsp 'sessionToggle', { desc = 'Toggle session menu' })
-bind('CTRL+ALT+Delete', exec(string.format('qs -c ii ipc call TEST_ALIVE || pkill wlogout || wlogout -p layer-shell', Hypr.qsConfig)))
+bind('CTRL+ALT+Delete', function()
+  qs_dsp 'sessionToggle' ()
+  exec 'qs -c ii ipc call TEST_ALIVE || pkill wlogout || wlogout -p layer-shell' ()
+end, { desc = 'Toggle session menu' })
 bind('SHIFT+SUPER+ALT+Slash', exec 'qs -p ~/.config/quickshell/ii/welcome.qml')
 
 bind('XF86MonBrightnessUp', exec 'qs -c ii ipc call brightness increment || brightnessctl s 5%+', { locked = true, repeating = true })
@@ -50,43 +56,56 @@ bind('XF86AudioLowerVolume', exec 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-', {
 bind('F10', exec 'wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle', { desc = 'Toggle audio mute', locked = true })
 bind('ALT+XF86AudioMute', exec 'wpctl set-mute @DEFAULT_SOURCE@ toggle', { locked = true })
 bind(mm .. '+ALT+M', exec 'wpctl set-mute @DEFAULT_SOURCE@ toggle', { desc = 'Toggle mic', locked = true })
-bind(mm .. '+CTRL+T', qs_dsp 'wallpaperSelectorToggle', { desc = 'Toggle wallpaper selector' })
-bind(mm .. '+CTRL+T', exec 'qs -c ii ipc call TEST_ALIVE || ~/.config/quickshell/ii/scripts/colors/switchwall.sh')
+bind(mm .. '+CTRL+T', function()
+  qs_dsp 'wallpaperSelectorToggle' ()
+  exec 'qs -c ii ipc call TEST_ALIVE || ~/.config/quickshell/ii/scripts/colors/switchwall.sh' ()
+end, { desc = 'Toggle wallpaper selector' })
 bind(mm .. '+CTRL+ALT+T', qs_dsp 'wallpaperSelectorRandom', { desc = 'Select random wallpaper' })
 bind(mm .. '+CTRL+R', exec 'killall ags qgsv1 gjs ydotool qs quickshell; qs -c ii', { desc = 'Restart Widgets' })
 
 -- UTILS
-bind(mm .. '+V', qs_dsp 'overviewClipboardToggle', { desc = 'Clipboard history >> clipboard' })
-bind(mm .. '+V', exec 'qs -c ii ipc call TEST_ALIVE || pkill fuzzel || cliphist list | fuzzel --match-mode fzf --dmenu | cliphist decode | wl-copy')
-bind(mm .. '+Period', qs_dsp 'overviewEmojiToggle', { desc = 'Emoji >> clipboard' })
-bind(mm .. '+Period', exec 'qs -c ii ipc call TEST_ALIVE || pkill fuzzel || ~/.config/hypr/hyprland/scripts/fuzzel-emoji.sh copy')
+bind(mm .. '+V', function()
+  qs_dsp 'overviewClipboardToggle' ()
+  exec 'qs -c ii ipc call TEST_ALIVE || pkill fuzzel || cliphist list | fuzzel --match-mode fzf --dmenu | cliphist decode | wl-copy' ()
+end, { desc = 'Clipboard history >> clipboard' })
+bind(mm .. '+Period', function()
+  qs_dsp 'overviewEmojiToggle' ()
+  exec 'qs -c ii ipc call TEST_ALIVE || pkill fuzzel || ~/.config/hypr/hyprland/scripts/fuzzel-emoji.sh copy' ()
+end, { desc = 'Emoji >> clipboard' })
 
 -- OCR
-bind(mm .. '+SHIFT+A', qs_dsp 'regionSearch', { desc = 'Google Lens' })
-bind(mm .. '+SHIFT+A', exec 'exec, qs -c ii ipc call TEST_ALIVE || pidof slurp || ~/.config/hypr/hyprland/scripts/snip_to_search.sh')
-bind(mm .. '+SHIFT+X', qs_dsp 'regionOcr', { desc = 'OCR >> clipboard' })
-bind(mm .. '+SHIFT+X',
-  exec [[qs -c ii ipc call TEST_ALIVE || pidof slurp || grim -g "$(slurp $SLURP_ARGS)" "/tmp/ocr_image.png" && tesseract "/tmp/ocr_image.png" stdout -l $(tesseract --list-langs | awk 'NR>1{print $1}' | tr '\\n' '+' | sed 's/\\+$/\\n/') | wl-copy && rm "/tmp/ocr_image.png"]])
+bind(mm .. '+SHIFT+A', function()
+  qs_dsp 'regionSearch' ()
+  exec 'exec, qs -c ii ipc call TEST_ALIVE || pidof slurp || ~/.config/hypr/hyprland/scripts/snip_to_search.sh' ()
+end, { desc = 'Google Lens' })
+bind(mm .. '+SHIFT+X', function()
+  qs_dsp 'regionOcr' ()
+  exec [[qs -c ii ipc call TEST_ALIVE || pidof slurp || grim -g "$(slurp $SLURP_ARGS]]()
+end, { desc = 'OCR >> clipboard' })
 -- Color picker
 bind(mm .. '+CTRL+P', exec 'hyprpicker -a', { desc = 'Color picker' })
 -- Screenshot
 bind('Print', exec 'grim - | wl-copy', { desc = 'Screenshot >> clipboard', locked = true })
-bind(mm .. '+SHIFT+S', qs_dsp 'regionScreenshot', { desc = 'Screen snip' })
-bind(mm .. '+SHIFT+S', exec 'qs -c ii ipc call TEST_ALIVE || pidof slurp || hyprshot --freeze --clipboard-only --mode region --silent')
-bind('CTRL+Print',
-  exec [[mkdir -p $(xdg-user-dir PICTURES)/Screenshots && grim $(xdg-user-dir PICTURES)/Screenshots/Screenshot_"$(date '+%Y-%m-%d_%H.%M.%S')".png]],
-  { desc = 'Screenshot >> clipboard & file', locked = true, non_consuming = true })
-bind('CTRL+Print', exec 'grim - | wl-copy', { locked = true, non_consuming = true })
+bind(mm .. '+SHIFT+S', function()
+  qs_dsp 'regionScreenshot' ()
+  exec 'qs -c ii ipc call TEST_ALIVE || pidof slurp || hyprshot --freeze --clipboard-only --mode region --silent' ()
+end, { desc = 'Screen snip' })
+bind('CTRL+Print', function()
+  exec [[mkdir -p $(xdg-user-dir PICTURES)/Screenshots && grim $(xdg-user-dir PICTURES)/Screenshots/Screenshot_"$(date '+%Y-%m-%d_%H.%M.%S')".png]]
+  exec 'grim - | wl-copy' ()
+end, { desc = 'Screenshot >> clipboard & file', locked = true, non_consuming = true })
 -- Recording stuff
-bind(mm .. '+SHIFT+R', qs_dsp 'regionRecord', { desc = 'Record region (no sound)', locked = true })
-bind(mm .. '+SHIFT+R', exec 'qs -c ii ipc call TEST_ALIVE || ~/.config/quickshell/ii/scripts/videos/record.sh', { locked = true })
-bind(mm .. '+ALT+R', qs_dsp 'regionRecord', { locked = true })
-bind(mm .. '+ALT+R', exec 'qs -c ii ipc call TEST_ALIVE || ~/.config/quickshell/ii/scripts/videos/record.sh', { locked = true })
+bind(mm .. '+SHIFT+R', function()
+  qs_dsp 'regionRecord' ()
+  exec 'qs -c ii ipc call TEST_ALIVE || ~/.config/quickshell/ii/scripts/videos/record.sh' ()
+end, { desc = 'Record region (no sound)', locked = true })
+bind(mm .. '+ALT+R', function()
+  qs_dsp 'regionRecord' ()
+  exec 'qs -c ii ipc call TEST_ALIVE || ~/.config/quickshell/ii/scripts/videos/record.sh' ()
+end, { locked = true })
 bind('CTRL+ALT+R', exec '~/.config/quickshell/ii/scripts/videos/record.sh --fullscreen', { desc = 'Record fullscreen (no sound)', locked = true })
 bind(mm .. '+SHIFT+ALT+R', exec '~/.config/quickshell/ii/scripts/videos/record.sh --fullscreen --sound', { desc = 'Record fullscreen', locked = true })
-bind(mm .. '+SHIFT+ALT+mouse:273',
-  exec '~/.config/hypr/hyprland/scripts/ai/primary-buffer-query.sh',
-  { desc = 'Generate AI summary for selected text' })
+bind(mm .. '+SHIFT+ALT+mouse:273', exec '~/.config/hypr/hyprland/scripts/ai/primary-buffer-query.sh', { desc = 'Generate AI summary' })
 
 -- WINDOW
 -- Focusing
@@ -122,13 +141,16 @@ for n = 1, 10 do
 end
 
 -- VM
-bind(mm .. '+ALT+F1', exec [[notify-send 'Entered Virtual Machine submap' 'Keybinds disabled. Hit Super+ALT+F1 to escape' -a 'Hyprland']],
-  { desc = 'Disable keybinds' })
-bind(mm .. '+ALT+F1', exec [[hyprctl dispatch "hl.dsp.submap 'virtual-machine'"]])
+bind(mm .. '+ALT+F1', function()
+  exec [[notify-send 'Entered Virtual Machine submap' 'Keybinds disabled. Hit Super+ALT+F1 to escape' -a 'Hyprland']]
+  exec [[hyprctl dispatch "hl.dsp.submap 'virtual-machine'"]]()
+end, { desc = 'Disable keybinds' })
 
 hl.define_submap('virtual-machine', function()
-  bind(mm .. '+ALT+F1', exec [[notify-send 'Exited Virtual Machine submap' 'Keybinds re-enabled' -a 'Hyprland']], { desc = 'Enable keybinds' })
-  bind(mm .. '+ALT+F1', exec [[hyprctl dispatch "hl.dsp.submap 'default'"]])
+  bind(mm .. '+ALT+F1', function()
+    exec [[notify-send 'Exited Virtual Machine submap' 'Keybinds re-enabled' -a 'Hyprland']]
+    exec [[hyprctl dispatch "hl.dsp.submap 'default'"]]()
+  end, { desc = 'Enable keybinds' })
 end)
 
 -- Session
