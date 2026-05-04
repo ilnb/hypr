@@ -15,7 +15,7 @@ hl.gesture {
   fingers = 4,
   direction = 'up',
   action = function()
-    hl.dsp.global 'quickshell:overviewWorkspacesToggle'
+    return hl.dsp.global 'quickshell:overviewWorkspacesToggle'
   end,
 }
 
@@ -23,7 +23,7 @@ hl.gesture {
   fingers = 4,
   direction = 'down',
   action = function()
-    hl.dsp.global 'quickshell:overviewWorkspacesClose'
+    return hl.dsp.global 'quickshell:overviewWorkspacesClose'
   end,
 }
 
