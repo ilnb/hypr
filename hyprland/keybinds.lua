@@ -108,7 +108,7 @@ bind(mm .. '+ALT+R', function()
 end, { locked = true })
 bind('CTRL+ALT+R', exec '~/.config/quickshell/ii/scripts/videos/record.sh --fullscreen', { desc = 'Record fullscreen (no sound)', locked = true })
 bind(mm .. '+SHIFT+ALT+R', exec '~/.config/quickshell/ii/scripts/videos/record.sh --fullscreen --sound', { desc = 'Record fullscreen', locked = true })
-bind(mm .. '+SHIFT+ALT+mouse:273', exec(Hypr.hypr_scripts .. '/scripts/ai/primary-buffer-query.sh'), { desc = 'Generate AI summary' })
+bind(mm .. '+SHIFT+ALT+mouse:273', exec(Hypr.hypr_scripts .. '/ai/primary-buffer-query.sh'), { desc = 'Generate AI summary' })
 
 -- WINDOW
 -- Focusing
@@ -163,10 +163,10 @@ bind(mm .. '+CTRL+SHIFT+ALT+Delete', exec 'systemctl poweroff || loginctl powero
 
 -- SCREEN
 -- Zoom
-bind(mm .. '+Minus', exec(Hypr.hypr_scripts .. '/scripts/zoom.sh decrease 0.3'), { desc = 'Zoom out', repeating = true })
--- bind(mm .. '+code:82', exec(Hypr.hypr_scripts .. '/scripts/zoom.sh decrease 0.3'), { repeating = true })
-bind(mm .. '+Plus', exec(Hypr.hypr_scripts .. '/scripts/zoom.sh increase 0.3'), { desc = 'Zoom in', repeating = true })
--- bind(mm .. '+code:86', exec(Hypr.hypr_scripts .. '/scripts/zoom.sh increase 0.3'), { repeating = true })
+bind(mm .. '+Minus', exec(Hypr.hypr_scripts .. '/zoom.sh decrease 0.3'), { desc = 'Zoom out', repeating = true })
+-- bind(mm .. '+code:82', exec(Hypr.hypr_scripts .. '/zoom.sh decrease 0.3'), { repeating = true })
+bind(mm .. '+Equal', exec(Hypr.hypr_scripts .. '/zoom.sh increase 0.3'), { desc = 'Zoom in', repeating = true })
+-- bind(mm .. '+code:86', exec(Hypr.hypr_scripts .. '/zoom.sh increase 0.3'), { repeating = true })
 
 -- MEDIA
 bind(mm .. '+SHIFT+N',
@@ -190,7 +190,7 @@ bind(mm .. '+I',
   exec('XDG_CURRENT_DESKTOP=gnome ' .. Hypr.hypr_scripts ..
     [[/launch_first_available.sh "qs -p ~/.config/quickshell/ii/settings.qml" "systemsettings" "gnome-control-center" "better-control"]]),
   { desc = 'Settings' })
-bind('CTRL+SHIFT+Escape', exec(Hypr.hypr_scripts .. '/scripts/launch_first_available.sh'
+bind('CTRL+SHIFT+Escape', exec(Hypr.hypr_scripts .. '/launch_first_available.sh'
     .. [["gnome-system-monitor" "plasma-systemmonitor --page-name Processes" "command -v btop && wezterm start btop"]]),
   { desc = 'System monitor' })
 
