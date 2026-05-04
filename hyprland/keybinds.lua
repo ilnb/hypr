@@ -112,9 +112,9 @@ bind(mm .. '+SHIFT+ALT+mouse:273', exec(Hypr.hypr_scripts .. '/ai/primary-buffer
 
 -- WINDOW
 -- Focusing
-bind(mm .. '+mouse:272', dsp.window.drag, { desc = 'Drag window', mouse = true })
-bind(mm .. '+mouse:274', dsp.window.drag, { mouse = true })
-bind(mm .. '+mouse:273', dsp.window.resize, { desc = 'Resize window', mouse = true })
+bind(mm .. '+mouse:272', dsp.window.drag(), { desc = 'Drag window', mouse = true })
+bind(mm .. '+mouse:274', dsp.window.drag(), { mouse = true })
+bind(mm .. '+mouse:273', dsp.window.resize(), { desc = 'Resize window', mouse = true })
 for _, key in ipairs { 'left', 'right', 'up', 'down' } do
   bind(mm .. '+' .. key, dsp.focus { direction = key })
 end
