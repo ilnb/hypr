@@ -133,7 +133,7 @@ for n = 1, 10 do
   bind(mm .. '+ALT+' .. i, exec(Hypr.hypr_scripts .. '/workspace_action.sh movetoworkspacesilent ' .. i))
 end
 
-bind(mm .. '+ALT+S', dsp.window.move { workspace = 'special:scratchpad' }, { desc = 'Send to scratchpad' })
+bind(mm .. '+ALT+S', dsp.window.move { workspace = 'special:scratchpad', follow = false }, { desc = 'Send to scratchpad' })
 bind(mm .. '+S', dsp.workspace.toggle_special 'scratchpad', { desc = 'Toggle scratchpad' })
 
 -- WORKSPACE
