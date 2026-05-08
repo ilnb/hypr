@@ -24,11 +24,11 @@ bind(mm .. '+CTRL+K', exec(cmd .. ' 0 -30 || hyprctl dispatch movewindow u'), { 
 bind(mm .. '+CTRL+J', exec(cmd .. ' 0 30  || hyprctl dispatch movewindow d'), { repeating = true })
 
 -- WORKSPACES
-local numpad = { 87, 88, 89, 83, 84, 86, 79, 80, 81, 90 }
+local numpad = { 87, 88, 89, 83, 84, 86, 79, 80, 81, [0] = 90 }
 for n = 1, 10 do
   local i = n % 10
-  bind(mm .. '+SHIFT+' .. i, dsp.window.move { workspace = i })
-  bind(mm .. '+SHIFT+code:' .. numpad[n], dsp.window.move { workspace = i })
+  bind(mm .. '+SHIFT+' .. i, dsp.window.move { workspace = n })
+  bind(mm .. '+SHIFT+code:' .. numpad[i], dsp.window.move { workspace = n })
 end
 bind(mm .. '+ALT+N', dsp.focus { workspace = 'r+1' })
 bind(mm .. '+ALT+P', dsp.focus { workspace = 'r-1' })

@@ -21,7 +21,7 @@ bind(mm .. '+Super_R', function()
   run(qs_dsp 'searchToggleRelease')
   run(exec 'qs -c ii ipc call TEST_ALIVE || pkill fuzzel || fuzzel')
 end, { release = true })
-bind(mm, qs_dsp 'searchToggleReleaseInterrupt', { transparent = true, release = true, non_consuming = true })
+-- bind(mm, qs_dsp 'searchToggleReleaseInterrupt', { transparent = true, release = true, non_consuming = true })
 for _, k in ipairs {
   'CTRL+Super_L',
   'CTRL+Super_R',
@@ -128,11 +128,11 @@ bind(mm .. '+ALT+Space', dsp.window.float { action = 'toggle' }, { desc = 'Float
 bind(mm .. '+X', dsp.window.fullscreen { action = 'toggle', mode = 'maximized' }, { desc = 'Maximize' })
 bind('ALT+Return', dsp.window.fullscreen { action = 'toggle', mode = 'fullscreen' }, { desc = 'Fullscreen' })
 
-local numpad = { 87, 88, 89, 83, 84, 86, 79, 80, 81, 90 }
+local numpad = { 87, 88, 89, 83, 84, 86, 79, 80, 81, [0] = 90 }
 for n = 1, 10 do
   local i = n % 10
-  bind(mm .. '+ALT+' .. i, dsp.window.move { workspace = i, follow = false })
-  bind(mm .. '+ALT+code:' .. numpad[n], dsp.window.move { workspace = i, follow = false })
+  bind(mm .. '+ALT+' .. i, dsp.window.move { workspace = n, follow = false })
+  bind(mm .. '+ALT+code:' .. numpad[i], dsp.window.move { workspace = n, follow = false })
 end
 
 bind(mm .. '+ALT+S', dsp.window.move { workspace = 'special:scratchpad', follow = false }, { desc = 'Send to scratchpad' })
@@ -142,8 +142,8 @@ bind(mm .. '+S', dsp.workspace.toggle_special 'scratchpad', { desc = 'Toggle scr
 -- Switching
 for n = 1, 10 do
   local i = n % 10
-  bind(mm .. '+' .. i, dsp.focus { workspace = i })
-  bind(mm .. '+code:' .. numpad[n], dsp.focus { workspace = i })
+  bind(mm .. '+' .. i, dsp.focus { workspace = n })
+  bind(mm .. '+code:' .. numpad[i], dsp.focus { workspace = n })
 end
 
 -- VM
