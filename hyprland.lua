@@ -2,7 +2,6 @@ local home = os.getenv 'HOME'
 
 _G.Hypr = {}
 Hypr.mainMod = 'SUPER'
-Hypr.qsConfig = 'ii'
 Hypr.editor = 'nvim'
 Hypr.explorer = 'thunar'
 Hypr.browser = 'zen-browser'

@@ -49,10 +49,20 @@ bind('F12', exec 'wpctl set-volume -l 1.53 @DEFAULT_AUDIO_SINK@ 5%+', { desc = '
 bind('code:248', exec 'wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle', { desc = 'Toggle microphone mute', locked = true })
 
 -- APPS
-bind(mm .. '+C', exec(Hypr.hypr_scripts .. '/launch_first_available.sh'
-    .. string.format(' "%s start -- sh -c nvim"', Hypr.terminal)
-    .. [[ "kitty -1 nvim"]]),
-  { desc = 'Code editor' })
+bind(mm .. '+C', function()
+  local term = Hypr.terminal
+  if not term then
+    exec "notify-send 'Hyprland' 'Terminal not set'" ()
+    return
+  end
+  if term:find 'kitty' then
+    exec 'kitty -1 nvim' ()
+  elseif term:find 'wezterm' then
+    exec(term .. ' start -- sh -c nvim')()
+  else
+    exec('notify-send "Hyprland" "Dont know "' .. term .. '"')()
+  end
+end, { desc = 'Code editor' })
 bind(mm .. '+F', exec(Hypr.hypr_scripts .. '/launch_first_available.sh' .. [[ "zen-browser" "firefox" "brave" "librewolf"]]), { desc = 'Browser' })
 bind(mm .. '+SHIFT+M', exec 'flatpak run com.spotify.Client', { desc = 'Spotify' })
 bind(mm .. '+D', exec 'vesktop', { desc = 'Discord' })
