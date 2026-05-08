@@ -128,7 +128,7 @@ bind(mm .. '+ALT+Space', dsp.window.float { action = 'toggle' }, { desc = 'Float
 bind(mm .. '+X', dsp.window.fullscreen { action = 'toggle', mode = 'maximized' }, { desc = 'Maximize' })
 bind('ALT+Return', dsp.window.fullscreen { action = 'toggle', mode = 'fullscreen' }, { desc = 'Fullscreen' })
 
-local numpad = { 87, 88, 89, 83, 84, 86, 79, 80, 81, [0] = 90 }
+local numpad = { 87, 88, 89, 83, 84, 85, 79, 80, 81, [0] = 90 }
 for n = 1, 10 do
   local i = n % 10
   bind(mm .. '+ALT+' .. i, dsp.window.move { workspace = n, follow = false })
@@ -166,10 +166,29 @@ bind(mm .. '+CTRL+SHIFT+ALT+Delete', exec 'systemctl poweroff || loginctl powero
 
 -- SCREEN
 -- Zoom
-bind(mm .. '+Minus', exec(Hypr.hypr_scripts .. '/zoom.sh decrease 0.3'), { desc = 'Zoom out', repeating = true })
-bind(mm .. '+code:82', exec(Hypr.hypr_scripts .. '/zoom.sh decrease 0.3'), { repeating = true })
-bind(mm .. '+Equal', exec(Hypr.hypr_scripts .. '/zoom.sh increase 0.3'), { desc = 'Zoom in', repeating = true })
-bind(mm .. '+code:86', exec(Hypr.hypr_scripts .. '/zoom.sh increase 0.3'), { repeating = true })
+
+---@param factor number
+---@param inc boolean?
+local function zoom(factor, inc)
+  inc = inc and true
+  local new = hl.get_config 'cursor.zoom_factor'
+  if inc then
+    new = new - factor
+  else
+    new = new + factor
+  end
+  if new < 1 then
+    new = 1
+  elseif new > 3 then
+    new = 3
+  end
+  hl.config { cursor = { zoom_factor = new } }
+end
+
+bind(mm .. '+Minus', function() zoom(0.3) end, { desc = 'Zoom out', repeating = true })
+bind(mm .. '+code:82', function() zoom(0.3) end, { repeating = true })
+bind(mm .. '+Equal', function() zoom(0.3, true) end, { desc = 'Zoom in', repeating = true })
+bind(mm .. '+code:86', function() zoom(0.3, true) end, { repeating = true })
 
 -- MEDIA
 bind(mm .. '+SHIFT+N',
