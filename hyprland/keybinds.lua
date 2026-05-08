@@ -132,7 +132,7 @@ local numpad = { 87, 88, 89, 83, 84, 86, 79, 80, 81, 90 }
 for n = 1, 10 do
   local i = n % 10
   bind(mm .. '+ALT+' .. i, dsp.window.move { workspace = i, follow = false })
-  bind(mm .. '+ALT+code:' .. numpad[i], dsp.window.move { workspace = i, follow = false })
+  bind(mm .. '+ALT+code:' .. numpad[n], dsp.window.move { workspace = i, follow = false })
 end
 
 bind(mm .. '+ALT+S', dsp.window.move { workspace = 'special:scratchpad', follow = false }, { desc = 'Send to scratchpad' })
@@ -143,7 +143,7 @@ bind(mm .. '+S', dsp.workspace.toggle_special 'scratchpad', { desc = 'Toggle scr
 for n = 1, 10 do
   local i = n % 10
   bind(mm .. '+' .. i, dsp.focus { workspace = i })
-  bind(mm .. '+code:' .. numpad[i], dsp.focus { workspace = i })
+  bind(mm .. '+code:' .. numpad[n], dsp.focus { workspace = i })
 end
 
 -- VM
