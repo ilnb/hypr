@@ -128,9 +128,11 @@ bind(mm .. '+ALT+Space', dsp.window.float { action = 'toggle' }, { desc = 'Float
 bind(mm .. '+X', dsp.window.fullscreen { action = 'toggle', mode = 'maximized' }, { desc = 'Maximize' })
 bind('ALT+Return', dsp.window.fullscreen { action = 'toggle', mode = 'fullscreen' }, { desc = 'Fullscreen' })
 
+local numpad = { 87, 88, 89, 83, 84, 86, 79, 80, 81, 90 }
 for n = 1, 10 do
-  local i = n == 10 and 0 or n
-  bind(mm .. '+ALT+' .. i, exec(Hypr.hypr_scripts .. '/workspace_action.sh movetoworkspacesilent ' .. i))
+  local i = n % 10
+  bind(mm .. '+ALT+' .. i, dsp.window.move { workspace = i, follow = false })
+  bind(mm .. '+ALT+code:' .. numpad[i], dsp.window.move { workspace = i, follow = false })
 end
 
 bind(mm .. '+ALT+S', dsp.window.move { workspace = 'special:scratchpad', follow = false }, { desc = 'Send to scratchpad' })
@@ -139,8 +141,9 @@ bind(mm .. '+S', dsp.workspace.toggle_special 'scratchpad', { desc = 'Toggle scr
 -- WORKSPACE
 -- Switching
 for n = 1, 10 do
-  local i = n == 10 and 0 or n
-  bind(mm .. '+' .. i, exec(Hypr.hypr_scripts .. '/workspace_action.sh workspace' .. i))
+  local i = n % 10
+  bind(mm .. '+' .. i, dsp.focus { workspace = i })
+  bind(mm .. '+code:' .. numpad[i], dsp.focus { workspace = i })
 end
 
 -- VM
@@ -164,9 +167,9 @@ bind(mm .. '+CTRL+SHIFT+ALT+Delete', exec 'systemctl poweroff || loginctl powero
 -- SCREEN
 -- Zoom
 bind(mm .. '+Minus', exec(Hypr.hypr_scripts .. '/zoom.sh decrease 0.3'), { desc = 'Zoom out', repeating = true })
--- bind(mm .. '+code:82', exec(Hypr.hypr_scripts .. '/zoom.sh decrease 0.3'), { repeating = true })
+bind(mm .. '+code:82', exec(Hypr.hypr_scripts .. '/zoom.sh decrease 0.3'), { repeating = true })
 bind(mm .. '+Equal', exec(Hypr.hypr_scripts .. '/zoom.sh increase 0.3'), { desc = 'Zoom in', repeating = true })
--- bind(mm .. '+code:86', exec(Hypr.hypr_scripts .. '/zoom.sh increase 0.3'), { repeating = true })
+bind(mm .. '+code:86', exec(Hypr.hypr_scripts .. '/zoom.sh increase 0.3'), { repeating = true })
 
 -- MEDIA
 bind(mm .. '+SHIFT+N',

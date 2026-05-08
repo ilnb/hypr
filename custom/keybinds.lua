@@ -24,10 +24,11 @@ bind(mm .. '+CTRL+K', exec(cmd .. ' 0 -30 || hyprctl dispatch movewindow u'), { 
 bind(mm .. '+CTRL+J', exec(cmd .. ' 0 30  || hyprctl dispatch movewindow d'), { repeating = true })
 
 -- WORKSPACES
+local numpad = { 87, 88, 89, 83, 84, 86, 79, 80, 81, 90 }
 for n = 1, 10 do
-  local k = n == 10 and 0 or n
-  bind(mm .. '+' .. k, dsp.focus { workspace = k })
-  bind(mm .. '+SHIFT+' .. k, dsp.window.move { workspace = k })
+  local i = n % 10
+  bind(mm .. '+SHIFT+' .. i, dsp.window.move { workspace = i })
+  bind(mm .. '+SHIFT+code:' .. numpad[i], dsp.window.move { workspace = i })
 end
 bind(mm .. '+ALT+N', dsp.focus { workspace = 'r+1' })
 bind(mm .. '+ALT+P', dsp.focus { workspace = 'r-1' })
@@ -45,7 +46,7 @@ bind(mm .. '+SHIFT+U', exec(Hypr.custom_scripts .. '/update.sh up'), { desc = 'R
 bind('XF86AudioMute', exec 'wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle', { locked = true })
 bind('F11', exec 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-', { desc = 'Decrease volume', locked = true, repeating = true })
 bind('F12', exec 'wpctl set-volume -l 1.53 @DEFAULT_AUDIO_SINK@ 5%+', { desc = 'Increase volume', locked = true, repeating = true })
--- bind('code:248', exec 'wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle', { desc = 'Toggle microphone mute', locked = true })
+bind('code:248', exec 'wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle', { desc = 'Toggle microphone mute', locked = true })
 
 -- APPS
 bind(mm .. '+C', exec(Hypr.hypr_scripts .. '/launch_first_available.sh'
