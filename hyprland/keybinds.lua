@@ -173,9 +173,9 @@ local function zoom(factor, inc)
   inc = inc and true
   local new = hl.get_config 'cursor.zoom_factor'
   if inc then
-    new = new - factor
-  else
     new = new + factor
+  else
+    new = new - factor
   end
   if new < 1 then
     new = 1
