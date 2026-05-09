@@ -7,13 +7,16 @@ local exec = dsp.exec_cmd
 local qs_dsp = function(str)
   return dsp.global('quickshell:' .. str)
 end
-
-local dirs = { H = 'l', L = 'r', K = 'u', J = 'd' }
+---@param d HL.Dispatcher
+local run = function(d)
+  hl.dispatch(d)
+end
 
 -- WINDOW
 bind(mm .. '+Backspace', qs_dsp 'sessionToggle', { desc = 'Toggle session menu' })
 bind(mm .. '+Delete', exec 'exit')
 bind(mm .. '+W', dsp.window.float { action = 'toggle' }, { desc = 'Float' })
+local dirs = { H = 'l', L = 'r', K = 'u', J = 'd' }
 for key, dir in pairs(dirs) do
   bind(mm .. '+' .. key, dsp.focus { direction = dir })
 end
@@ -52,15 +55,15 @@ bind('code:248', exec 'wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle', { desc = '
 bind(mm .. '+C', function()
   local term = Hypr.terminal
   if not term then
-    exec "notify-send 'Hyprland' 'Terminal not set'" ()
+    run(exec "notify-send 'Hyprland' 'Terminal not set'")
     return
   end
   if term:find 'kitty' then
-    exec 'kitty -1 nvim' ()
+    run(exec 'kitty -1 nvim')
   elseif term:find 'wezterm' then
-    exec(term .. ' start -- sh -c nvim')()
+    run(exec(term .. ' start -- sh -c nvim'))
   else
-    exec('notify-send "Hyprland" "Dont know "' .. term .. '"')()
+    run(exec('notify-send "Hyprland" "Dont know "' .. term .. '"'))
   end
 end, { desc = 'Code editor' })
 bind(mm .. '+F', exec(Hypr.hypr_scripts .. '/launch_first_available.sh' .. [[ "zen-browser" "firefox" "brave" "librewolf"]]), { desc = 'Browser' })
