@@ -136,6 +136,7 @@ for n = 1, 10 do
 end
 
 bind(mm .. '+ALT+S', dsp.window.move { workspace = 'special:scratchpad', follow = false }, { desc = 'Send to scratchpad' })
+bind(mm .. '+CTRL+S', dsp.window.move { workspace = 'special:scratchpad', follow = true }, { desc = 'Send to scratchpad' })
 bind(mm .. '+S', dsp.workspace.toggle_special 'scratchpad', { desc = 'Toggle scratchpad' })
 
 -- WORKSPACE
