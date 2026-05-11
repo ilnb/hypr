@@ -10,7 +10,7 @@ else
   -- igpu mode
   env('LIBVA_DRIVER_NAME', 'radeonsi')
   env('__GLX_VENDOR_LIBRARY_NAME', 'mesa')
-  env('AQ_DRM_DEVICES', '/dev/dri/by-path/pci-0000:05:00.0-card:/dev/dri/by-path/pci-0000:01:00.0-card')
+  env('AQ_DRM_DEVICES', '/dev/dri/card0:/dev/dri/card1')
 end
 
 hl.config {
