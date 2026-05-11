@@ -4,7 +4,6 @@ local path = os.getenv 'PATH' or ''
 local env = hl.env
 
 env('QT_IM_MODULE', 'fcitx')
-env('GTK_IM_MODULE', 'fcitx')
 env('SDL_IM_MODULE', 'fcitx')
 env('GLFW_IM_MODULE', 'fcitx')
 env('XMODIFIERS', '@im=fcitx')
