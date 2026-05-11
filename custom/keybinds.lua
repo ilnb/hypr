@@ -20,11 +20,11 @@ local dirs = { H = 'l', L = 'r', K = 'u', J = 'd' }
 for key, dir in pairs(dirs) do
   bind(mm .. '+' .. key, dsp.focus { direction = dir })
 end
-local cmd = [[grep -q "true" <<< $(hyprctl activewindow -j | jq -r .floating) && hyprctl dispatch moveactive]]
-bind(mm .. '+CTRL+H', exec(cmd .. ' -30 0 || hyprctl dispatch movewindow l'), { repeating = true })
-bind(mm .. '+CTRL+L', exec(cmd .. ' 30 0  || hyprctl dispatch movewindow r'), { repeating = true })
-bind(mm .. '+CTRL+K', exec(cmd .. ' 0 -30 || hyprctl dispatch movewindow u'), { repeating = true })
-bind(mm .. '+CTRL+J', exec(cmd .. ' 0 30  || hyprctl dispatch movewindow d'), { repeating = true })
+local cmd = [[grep -q "true" <<< $(hyprctl activewindow -j | jq -r .floating) && hyprctl dispatch "hl.dsp.window.move {]]
+bind(mm .. '+CTRL+H', exec(cmd .. [[ -30, 0 }" || hyprctl dispatch "hl.dsp.window.move { direction = 'left' }"]]), { repeating = true })
+bind(mm .. '+CTRL+L', exec(cmd .. [[ 30, 0  }" || hyprctl dispatch "hl.dsp.window.move { direction = 'right' }"]]), { repeating = true })
+bind(mm .. '+CTRL+K', exec(cmd .. [[ 0, -30 }" || hyprctl dispatch "hl.dsp.window.move { direction = 'up' }"]]), { repeating = true })
+bind(mm .. '+CTRL+J', exec(cmd .. [[ 0, 30  }" || hyprctl dispatch "hl.dsp.window.move{ direction = 'down' }"]]), { repeating = true })
 
 -- WORKSPACES
 local numpad = { 87, 88, 89, 83, 84, 85, 79, 80, 81, [0] = 90 }
