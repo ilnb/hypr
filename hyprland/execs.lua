@@ -20,12 +20,12 @@ hl.on('hyprland.start', function()
   exec(
     "wl-paste --type text --watch "
     .. "bash -c 'cliphist store && "
-    .. "qs -c ii ipc call cliphistService update''"
+    .. "qs -c ii ipc call cliphistService update'"
   )
   exec(
     "wl-paste --type image --watch "
     .. "bash -c 'cliphist store && "
-    .. "qs -c ii ipc call cliphistService update''"
+    .. "qs -c ii ipc call cliphistService update'"
   )
 
   -- Cursor

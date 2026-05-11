@@ -213,7 +213,7 @@ bind(mm .. '+I',
   exec('XDG_CURRENT_DESKTOP=gnome ' .. Hypr.hypr_scripts ..
     [[/launch_first_available.sh "qs -p ~/.config/quickshell/ii/settings.qml" "systemsettings" "gnome-control-center" "better-control"]]),
   { desc = 'Settings' })
-bind('CTRL+SHIFT+Escape', exec(Hypr.hypr_scripts .. '/launch_first_available.sh'
+bind('CTRL+SHIFT+Escape', exec(Hypr.hypr_scripts .. '/launch_first_available.sh '
     .. [["gnome-system-monitor" "plasma-systemmonitor --page-name Processes" "command -v btop && wezterm start btop"]]),
   { desc = 'System monitor' })
 
