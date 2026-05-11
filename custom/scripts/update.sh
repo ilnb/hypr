@@ -32,8 +32,8 @@ if [ "$1" == "up" ] ; then
     read -n 1 -p 'Press any key to continue...'
     "
     term=$(grep -E '^\s*\$TERMINAL\s*=' "$HOME/.config/hypr/custom/env.conf" | cut -d '=' -f2 | xargs)
-    term=$(basename "$term")
     term="${term:-$TERMINAL}"
+    term=$(basename "$term")
     if [[ "$term" == "ghostty" ]]; then
       ghostty --title=update --command="$command"
     elif [[ "$term" == "kitty" ]]; then
