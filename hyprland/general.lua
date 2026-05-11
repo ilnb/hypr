@@ -43,10 +43,6 @@ hl.config {
     gaps_out          = 5,
     gaps_workspaces   = 50,
     border_size       = 1,
-    col               = {
-      active_border = 'rgba(47474777)',
-      inactive_border = 'rgba(1B1B1B33)',
-    },
     resize_on_border  = true,
     no_focus_fallback = true,
     allow_tearing     = true, -- This just allows the `immediate` window rule to work
@@ -132,7 +128,6 @@ hl.config {
     session_lock_xray = true,
     initial_workspace_tracking = false,
     focus_on_activate = true,
-    background_color = "rgba(131313FF)",
   },
 
   binds      = {
