@@ -40,7 +40,7 @@ bind(mm .. '+Tab', qs_dsp 'overviewWorkspacesToggle', { desc = 'Toggle overview'
 bind(mm .. '+A', qs_dsp 'sidebarLeftToggle', { desc = 'Toggle left sidebar' })
 bind(mm .. '+ALT+A', qs_dsp 'sidebarLeftToggleDetach')
 bind(mm .. '+N', qs_dsp 'sidebarRightToggle', { desc = 'Toggle right sidebar' })
--- bind(mm .. '+slash', qs_dsp 'cheatsheetToggle', { desc = 'Toggle cheatsheet' })
+bind(mm .. '+slash', qs_dsp 'cheatsheetToggle', { desc = 'Toggle cheatsheet' })
 bind(mm .. '+SHIFT+K', qs_dsp 'oskToggle', { desc = 'Toggle on-screen keyboard' })
 bind(mm .. '+M', qs_dsp 'mediaControlsToggle', { desc = 'Toggle media controls' })
 bind(mm .. '+G', qs_dsp 'overlayToggle')
