@@ -2,129 +2,102 @@ local wr = hl.window_rule
 local lr = hl.layer_rule
 
 -- tag
-wr {
-  match = {
-    tag = 'center_float',
-  },
-  center = true,
-  float = true,
-}
+wr { match = { tag = 'center_float', }, center = true, float = true }
 
 -- opacity
-wr { match = { class = '(firefox)$' }, opacity = '0.90 override 0.90 override' }
-wr { match = { class = '(zen)' }, opacity = '0.80 override 0.80 override' }
-wr { match = { class = '(org.pwmt.zathura)' }, opacity = '0.75 override 0.80 override 0.70 override' }
-wr { match = { class = '(Brave-browser)$' }, opacity = '0.90 override 0.90 override' }
-wr { match = { class = '(kitty)$' }, opacity = '0.80 override 0.80 override 0.90 override' }
-wr { match = { class = '(org.wezfurlong.wezterm)$' }, opacity = '0.80 override 0.80 override 0.90 override' }
-wr { match = { class = '(com.mitchellh.ghostty)$' }, opacity = '0.80 override 0.80 override 0.90 override' }
-wr { match = { class = '(thunar)$' }, opacity = '0.70 override 0.70 override 0.70 override' }
-
-wr {
-  match = { class = '(org.kde.dolphin|org.kde.ark|nwg-look|qt5ct|qt6ct|kvantummanager)' },
-  opacity = '0.80 override 0.80 override',
+local op = {
+  { match = { class = 'firefox' },                                      opacity = '0.90 override 0.90 override' },
+  { match = { class = 'zen' },                                          opacity = '0.80 override 0.80 override' },
+  { match = { class = 'Brave-browser' },                                opacity = '0.90 override 0.90 override' },
+  { match = { class = '[Ss]team' },                                     opacity = '0.70 override 0.70 override' },
+  { match = { class = 'steamwebhelper' },                               opacity = '0.70 override 0.70 override' },
+  { match = { class = 'org.qbittorrent.qBittorrent' },                  opacity = '0.70 override 0.70 override' },
+  { match = { class = 'org.pulseaudio.pavucontrol' },                   opacity = '0.80 override 0.70 override' },
+  { match = { class = 'blueman-manager' },                              opacity = '0.80 override 0.70 override' },
+  { match = { class = 'nm-applet' },                                    opacity = '0.80 override 0.70 override' },
+  { match = { class = 'nm-connection-editor' },                         opacity = '0.80 override 0.70 override' },
+  { match = { class = 'org.kde.polkit-kde-authentication-agent-1' },    opacity = '0.80 override 0.70 override' },
+  { match = { class = 'polkit-gnome-authentication-agent-1' },          opacity = '0.80 override 0.70 override' },
+  { match = { class = 'org.freedesktop.impl.portal.desktop.gtk' },      opacity = '0.80 override 0.70 override' },
+  { match = { class = 'org.freedesktop.impl.portal.desktop.hyprland' }, opacity = '0.80 override 0.70 override' },
+  { match = { class = 'org.kde.dolphin.org' },                          opacity = '0.80 override 0.80 override' },
+  { match = { class = 'org.kde.ark' },                                  opacity = '0.80 override 0.80 override' },
+  { match = { class = 'nwg-look' },                                     opacity = '0.80 override 0.80 override' },
+  { match = { class = 'qt5ct' },                                        opacity = '0.80 override 0.80 override' },
+  { match = { class = 'qt6ct' },                                        opacity = '0.80 override 0.80 override' },
+  { match = { class = 'kvantummanager' },                               opacity = '0.80 override 0.80 override' },
+  { match = { class = '[Ss]potify' },                                   opacity = '0.70 override 0.70 override 0.70 override' },
+  { match = { class = 'thunar' },                                       opacity = '0.70 override 0.70 override 0.70 override' },
+  { match = { class = 'org.pwmt.zathura' },                             opacity = '0.75 override 0.80 override 0.70 override' },
+  { match = { class = 'kitty' },                                        opacity = '0.80 override 0.80 override 0.90 override' },
+  { match = { class = 'org.wezfurlong.wezterm' },                       opacity = '0.80 override 0.80 override 0.90 override' },
+  { match = { class = 'com.mitchellh.ghostty' },                        opacity = '0.80 override 0.80 override 0.90 override' },
 }
-
-wr {
-  match = {
-    class = '(org.pulseaudio.pavucontrol|blueman-manager|nm-applet|nm-connection-editor|org.kde.polkit-kde-authentication-agent-1|polkit-gnome-authentication-agent-1|org.freedesktop.impl.portal.desktop.gtk|org.freedesktop.impl.portal.desktop.hyprland)'
-  },
-  opacity = '0.80 override 0.70 override',
-}
-
-wr { match = { class = '([Ss]team)' }, opacity = '0.70 override 0.70 override' }
-wr { match = { class = '(steamwebhelper)' }, opacity = '0.70 override 0.70 override', fullscreen = false }
-wr { match = { class = '(org.qbittorrent.qBittorrent)' }, opacity = '0.70 override 0.70 override', fullscreen = false }
-
-wr { match = { class = '([Ss]potify)' }, opacity = '0.70 override 0.70 override 0.70 override' }
-wr { match = { initial_title = '(Spotify Free)$' }, opacity = '0.70 override 0.70 override 0.70 override' }
-wr { match = { initial_title = '(Spotify Premium)$' }, opacity = '0.70 override 0.70 override 0.70 override' }
+for _, rule in ipairs(op) do
+  wr(rule)
+end
 
 -- center float
-wr { match = { class = '(com.gabm.satty)$' }, tag = '+center_float' }
-
-wr {
-  match = {
-    class = '(kvantummanager|nwg-displays|org.kde.ark|nm-connection-editor|org.kde.polkit-kde-authentication-agent-1|[Xx]dg-desktop-portal-gtk|Signal|com.github.rafostar.Clapper|app.drey.Warp|net.davidotek.pupgui2|yad|eog|io.github.alainm23.planify|io.gitlab.theevilskeleton.Upscaler|com.github.unrud.VideoDownloader|io.gitlab.adhami3310.Impression|io.missioncenter.MissionCenter|iwdgui)'
-  },
-  tag = '+center_float',
+local cf = {
+  { match = { class = 'kvantummanager' } },
+  { match = { class = 'nwg-displays' } },
+  { match = { class = 'org.kde.ark' } },
+  { match = { class = 'nm-connection-editor' } },
+  { match = { class = 'org.kde.polkit-kde-authentication-agent-1' } },
+  { match = { class = '[Xx]dg-desktop-portal-gtk' } },
+  { match = { class = 'Signal' } },
+  { match = { class = 'com.github.rafostar.Clapper' } },
+  { match = { class = 'app.drey.Warp' } },
+  { match = { class = 'net.davidotek.pupgui2' } },
+  { match = { class = 'yad' } },
+  { match = { class = 'eog' } },
+  { match = { class = 'io.github.alainm23.planify' } },
+  { match = { class = 'io.gitlab.theevilskeleton.Upscaler' } },
+  { match = { class = 'com.github.unrud.VideoDownloader' } },
+  { match = { class = 'io.gitlab.adhami3310.Impression' } },
+  { match = { class = 'io.missioncenter.MissionCenter' } },
+  { match = { class = 'iwdgui' } },
+  { match = { class = 'com.gabm.satty' } },
+  { match = { class = 'nwg-look' },                                 size = '568 446' },
+  { match = { class = 'org.pulseaudio.pavucontrol' },               size = '542 343' },
+  { match = { class = 'blueman-manager' },                          size = '529 343' },
+  { match = { class = 'nm-applet' },                                size = '529 343' },
+  { match = { initial_title = '(.*)Rename(.*)$' },                  size = '450 250' },
+  { match = { initial_title = '(.*)Open(.*)$' },                    size = '450 250' },
+  { match = { initial_title = '(.*)Choose Files(.*)$' },            size = '450 250' },
+  { match = { initial_title = '(.*)Save(.*)$' },                    size = '450 250' },
+  { match = { initial_title = '(.*)File Upload(.*)$' },             size = '450 250' },
+  { match = { initial_title = '(.*)Opening(.*)$' },                 size = '450 250' },
 }
-
-wr {
-  match = { class = '(nwg-look)' },
-  size = '568 446',
-  tag = '+center_float',
-}
-
-wr {
-  match = { class = '(org.pulseaudio.pavucontrol)' },
-  size = '542 343',
-  tag = '+center_float',
-}
-
-wr {
-  match = { class = '(blueman-manager|nm-applet)' },
-  size = '529 343',
-  tag = '+center_float',
-}
+for _, rule in ipairs(cf) do
+  rule.tag = '+center_float'
+  wr(rule)
+end
 
 -- floats
-wr {
-  match = { title = '(Progress Dialog — Dolphin)$', class = '(org.kde.dolphin)$' },
-  float = true,
+local fl = {
+  { match = { title = '(Progress Dialog — Dolphin)$', class = 'org.kde.dolphin' } },
+  { match = { title = '(Copying — Dolphin)$', class = 'org.kde.dolphin' } },
+  { match = { title = '(Picture-in-Picture)$', class = 'firefox' } },
+  { match = { title = '(Library)$', class = 'firefox' } },
+  { match = { title = '(About Mozilla Firefox)$' } },
+  -- commmon modals
+  { match = { initial_title = '(.*)(Confirm to replace files)(.*)$' } },
+  { match = { initial_title = '(.*)(File Operation Progress)(.*)$' } },
 }
-
-wr {
-  match = { title = '(Copying — Dolphin)$', class = '(org.kde.dolphin)$' },
-  float = true,
-}
-
-wr { match = { title = '(About Mozilla Firefox)$' }, float = true }
-wr { match = { title = '(Picture-in-Picture)$', class = '(firefox)$' }, float = true }
-wr { match = { title = '(Library)$', class = '(firefox)$' }, float = true }
-
-wr {
-  match = { title = '(top|btop|htop)$', class = '(kitty|com.mitchellh.ghostty)$' },
-  float = true,
-}
-
-wr {
-  match = { initial_title = '(.*)(top|btop|htop)(.*)$' },
-  float = true,
-}
-
--- commmon modals
-wr {
-  match = { initial_title = '(.*)(Confirm to replace files)(.*)$' },
-  float = true,
-}
-
-wr {
-  match = { initial_title = '(.*)(File Operation Progress)(.*)$' },
-  float = true,
-}
-
-wr {
-  match = {
-    initial_title = '(.*)(Rename|Open|Choose Files|Save|File Upload|Opening)(.*)$',
-  },
-  size = '450 250',
-  tag = '+center_float',
-}
+for _, rule in ipairs(fl) do
+  rule.float = true
+  wr(rule)
+end
 
 -- layer rules
-lr {
-  name = 'blurry',
-  match = {
-    namespace = '(rofi|notifications|swaync-notification-window|swaync-control-center|logout_dialog)',
-  },
-  blur = true,
+local blur = {
+  'notifications',
+  'swaync-notification-window',
+  'swaync-control-center',
+  'rofi',
 }
-
-lr {
-  name = 'noalpha',
-  match = {
-    namespace = '(rofi|notifications|swaync-notification-window|swaync-control-center)',
-  },
-  ignore_alpha = 0,
-}
+for _, nm in ipairs(blur) do
+  lr { match = { namespace = nm }, blur = true, ignore_alpha = 0 }
+end
+lr { match = { namespace = 'logout_dialog' }, blur = true }
