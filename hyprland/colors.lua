@@ -1,16 +1,16 @@
-hl.config({
-    general = {
-        col = {
-            active_border   = "rgba(47474777)",
-            inactive_border = "rgba(1b1b1b33)",
-        },
+hl.config {
+  general = {
+    col = {
+      active_border   = 'rgba(47474777)',
+      inactive_border = 'rgba(1b1b1b33)'
     },
-    misc = {
-        background_color = "rgba(131313FF)",
-    },
-})
+  },
+  misc = {
+    background_color = 'rgba(131313FF)'
+  }
+}
 
-hl.window_rule({
-    match        = { pin = 1 },
-    border_color = "rgba(ffb3b5AA) rgba(ffb3b577)",
-})
+hl.window_rule {
+  match        = { pin = 1 },
+  border_color = 'rgba(9acbffAA) rgba(9acbff77)'
+}

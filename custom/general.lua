@@ -10,4 +10,7 @@ hl.config {
       brightness = 1.1,
     },
   },
+  cursor = {
+    inactive_timeout = 30,
+  },
 }
