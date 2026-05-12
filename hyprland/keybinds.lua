@@ -138,7 +138,7 @@ for n = 1, 10 do
 end
 
 bind(mm .. '+ALT+S', dsp.window.move { workspace = 'special:scratchpad', follow = false }, { desc = 'Send to scratchpad' })
-bind(mm .. '+CTRL+S', dsp.window.move { workspace = 'special:scratchpad', follow = true }, { desc = 'Send to scratchpad' })
+bind(mm .. '+CTRL+S', dsp.window.move { workspace = 'special:scratchpad', follow = true }, { desc = 'Send to scratchpad (follow)' })
 bind(mm .. '+S', dsp.workspace.toggle_special 'scratchpad', { desc = 'Toggle scratchpad' })
 
 -- WORKSPACE
@@ -150,16 +150,17 @@ for n = 1, 10 do
 end
 
 -- VM
-bind(mm .. '+ALT+F1', function()
-  run(exec [[notify-send 'Entered Virtual Machine submap' 'Keybinds disabled. Hit Super+ALT+F1 to escape' -a 'Hyprland']])
-  run(exec [[hyprctl dispatch "hl.dsp.submap 'virtual-machine'"]])
-end, { desc = 'Disable keybinds' })
-
 hl.define_submap('virtual-machine', function()
   bind(mm .. '+ALT+F1', function()
-    run(exec [[notify-send 'Exited Virtual Machine submap' 'Keybinds re-enabled' -a 'Hyprland']])
-    run(exec [[hyprctl dispatch "hl.dsp.submap 'reset'"]])
-  end, { desc = 'Enable keybinds' })
+    local curr = hl.get_current_submap()
+    if curr == 'virtual-machine' then
+      run(exec "notify-send 'Exited Virtual Machine submap' 'Keybinds re-enabled' -a 'Hyprland'")
+      run(dsp.submap 'reset')
+    elseif curr == '' then
+      run(exec "notify-send 'Entered Virtual Machine submap' 'Keybinds disabled. Hit SUPER+ALT+F1 to escape' -a 'Hyprland'")
+      run(dsp.submap 'virtual-machine')
+    end
+  end, { submap_universal = true, desc = 'Enter VM' })
 end)
 
 -- Session
