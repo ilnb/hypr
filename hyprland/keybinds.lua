@@ -34,8 +34,10 @@ for n = 272, 277 do
   bind(mm .. '+mouse:' .. n, qs_dsp 'searchToggleReleaseInterrupt', { mouse = true })
 end
 
-bind('Super_L', qs_dsp 'workspaceNumber', { transparent = true })
-bind('Super_R', qs_dsp 'workspaceNumber', { transparent = true })
+bind('Super_L', qs_dsp 'workspaceNumber', { transparent = true, ignore_mods = true })
+bind('Super_R', qs_dsp 'workspaceNumber', { transparent = true, ignore_mods = true })
+bind('Super_L', qs_dsp 'workspaceNumber', { transparent = true, ignore_mods = true, release = true })
+bind('Super_R', qs_dsp 'workspaceNumber', { transparent = true, ignore_mods = true, release = true })
 bind(mm .. '+Tab', qs_dsp 'overviewWorkspacesToggle', { desc = 'Toggle overview' })
 bind(mm .. '+A', qs_dsp 'sidebarLeftToggle', { desc = 'Toggle left sidebar' })
 bind(mm .. '+ALT+A', qs_dsp 'sidebarLeftToggleDetach')
