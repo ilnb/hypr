@@ -140,7 +140,7 @@ hl.config {
     zoom_rigid = false,
     zoom_disable_aa = true,
     hotspot_padding = true,
-  }
+  },
 }
 
 local curves = {
