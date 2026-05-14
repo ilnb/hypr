@@ -29,5 +29,5 @@ hl.on('hyprland.start', function()
   )
 
   -- Cursor
-  exec 'hyprctl setcursor Bibata-Modern-Classic 24'
+  exec 'hyprctl setcursor Bibata-Modern-Ice 24'
 end)
