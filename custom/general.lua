@@ -13,4 +13,8 @@ hl.config {
   cursor = {
     inactive_timeout = 15,
   },
+  input = {
+    repeat_rate = 35,
+    repeat_delay = 200,
+  },
 }

@@ -12,5 +12,5 @@ hl.config {
 
 hl.window_rule {
   match        = { pin = 1 },
-  border_color = 'rgba(90d889AA) rgba(90d88977)'
+  border_color = 'rgba(ffb3acAA) rgba(ffb3ac77)'
 }
