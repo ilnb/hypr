@@ -1,11 +1,20 @@
 #!/usr/bin/env bash
 
-data_dir="${XDG_DATA_HOME:-$HOME/.local/share}/end4"
-cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/end4"
-pdf_cache="${cache_dir}/pdf_cache.tsv"
+DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/end4"
+CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/end4"
+PDF_CACHE="${CACHE_DIR}/PDF_CACHE.tsv"
+mkdir -p "$CACHE_DIR/rofi_bg"
 
 hypr_border="$(hyprctl -j getoption decoration:rounding 2>/dev/null | jq '.int' || echo 10)"
 hypr_width="$(hyprctl -j getoption general:border_size 2>/dev/null | jq '.int' || echo 2)"
+
+wall_path=$(jq -r '.background.wallpaperPath' ~/.config/illogical-impulse/config.json)
+wall_base=$(basename "$wall_path")
+wall_cached="${CACHE_DIR}/rofi_bg/${wall_base}"
+if [[ ! -f "$wall_cached" ]] || [[ "$wall_path" -nt "$wall_cached" ]]; then
+  magick "$wall_path" -blur 0x5 "$wall_cached"
+fi
+wall_override="listview { background-image: url(\"$wall_cached\", height); }"
 
 get_font() {
   local font
@@ -39,7 +48,7 @@ fd_hidden=""
 [[ "$1" == "hidden" ]] && fd_hidden="-H"
 
 build_cache() {
-  mkdir -p "${cache_dir}"
+  mkdir -p "${CACHE_DIR}"
   local tmp
   tmp=$(mktemp)
   while IFS= read -r f; do
@@ -49,10 +58,10 @@ build_cache() {
     display="$([[ "$dir" == "$HOME" ]] && echo "$base" || echo "$(basename "$dir")/$base")"
     printf "%s\t%s\n" "$display" "$f"
   done < <(fd -H -t f -e pdf --full-path "$HOME") > "$tmp"
-  mv "$tmp" "${pdf_cache}"
+  mv "$tmp" "${PDF_CACHE}"
 }
 
-[[ ! -f "${pdf_cache}" ]] && build_cache
+[[ ! -f "${PDF_CACHE}" ]] && build_cache
 
 pdf_names=()
 pdf_paths=()
@@ -62,7 +71,7 @@ while IFS=$'\t' read -r display path; do
   fi
   pdf_names+=("$display")
   pdf_paths+=("$path")
-done < "${pdf_cache}"
+done < "${PDF_CACHE}"
 
 REFRESH_LABEL="Refresh"
 
@@ -73,6 +82,7 @@ selected_pdf=$(
     -theme-str "${font_override}" \
     -theme-str "${i_override}" \
     -theme-str "${r_override}" \
+    -theme-str "${wall_override}" \
     -theme "${rofi_config}"
 )
 
