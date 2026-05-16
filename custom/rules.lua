@@ -62,12 +62,12 @@ local cf = {
   { match = { class = 'org.pulseaudio.pavucontrol' },               size = '542 343' },
   { match = { class = 'blueman-manager' },                          size = '529 343' },
   { match = { class = 'nm-applet' },                                size = '529 343' },
-  { match = { initial_title = '(.*)Rename(.*)$' },                  size = '450 250' },
-  { match = { initial_title = '(.*)Open(.*)$' },                    size = '450 250' },
-  { match = { initial_title = '(.*)Choose Files(.*)$' },            size = '450 250' },
-  { match = { initial_title = '(.*)Save(.*)$' },                    size = '450 250' },
-  { match = { initial_title = '(.*)File Upload(.*)$' },             size = '450 250' },
-  { match = { initial_title = '(.*)Opening(.*)$' },                 size = '450 250' },
+  { match = { initial_title = '(.*)Rename(.*)$' },                  size = '750 550' },
+  { match = { initial_title = '(.*)Open(.*)$' },                    size = '750 550' },
+  { match = { initial_title = '(.*)Choose Files(.*)$' },            size = '750 550' },
+  { match = { initial_title = '(.*)Save(.*)$' },                    size = '750 550' },
+  { match = { initial_title = '(.*)File Upload(.*)$' },             size = '750 550' },
+  { match = { initial_title = '(.*)Opening(.*)$' },                 size = '750 550' },
 }
 for _, rule in ipairs(cf) do
   rule.tag = '+center_float'
