@@ -37,9 +37,8 @@ font_scale="${ROFI_LAUNCH_SCALE}"
 font_name="${ROFI_LAUNCH_FONT:-${ROFI_FONT:-$(get_font)}}"
 font_override="* {font: \"${font_name} ${font_scale}\";}"
 
-wind_border=$((hypr_border * 3))
 elem_border=$((hypr_border * 2))
-r_override="window{border:${hypr_width}px;border-radius:${wind_border}px;} element{border-radius:${elem_border}px;}"
+r_override="window{border:${hypr_width}px;} element{border-radius:${elem_border}px;}"
 
 icon_theme="$(get_icon_theme)"
 i_override="configuration {icon-theme: \"${icon_theme}\";}"
