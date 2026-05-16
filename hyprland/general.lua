@@ -42,7 +42,7 @@ hl.config {
     gaps_in           = 2,
     gaps_out          = 5,
     gaps_workspaces   = 50,
-    border_size       = 1,
+    border_size       = 2,
     resize_on_border  = true,
     no_focus_fallback = true,
     allow_tearing     = true, -- This just allows the `immediate` window rule to work
