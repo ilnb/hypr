@@ -1,8 +1,11 @@
 hl.config {
   general = {
     col = {
-      active_border   = 'rgba(47474777)',
-      inactive_border = 'rgba(1b1b1b33)'
+      active_border = {
+        colors = { 'rgba(9acbff77)', 'rgba(bac8da77)' },
+        angle = 45
+      },
+      inactive_border = 'rgba(47474744)'
     },
   },
   misc = {
@@ -12,5 +15,5 @@ hl.config {
 
 hl.window_rule {
   match        = { pin = 1 },
-  border_color = 'rgba(ffb3acAA) rgba(ffb3ac77)'
+  border_color = 'rgba(9acbffaa) rgba(9acbff77)'
 }
