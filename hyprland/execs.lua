@@ -29,5 +29,5 @@ hl.on('hyprland.start', function()
   )
 
   -- Cursor
-  exec 'hyprctl setcursor Bibata-Modern-Ice 24'
+  exec 'hyprctl setcursor Dracula-cursors 24'
 end)

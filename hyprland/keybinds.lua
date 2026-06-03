@@ -134,7 +134,7 @@ bind(mm .. '+ALT+R', function()
   run(qs_dsp 'regionRecord')
   run(exec 'qs -c ii ipc call TEST_ALIVE || ~/.config/quickshell/ii/scripts/videos/record.sh')
 end, { locked = true })
-bind('CTRL+ALT+R', exec '~/.config/quickshell/ii/scripts/videos/record.sh --fullscreen',
+bind(mm .. '+R', exec '~/.config/quickshell/ii/scripts/videos/record.sh --fullscreen',
   { desc = 'Utilities: Record fullscreen (no sound)', locked = true })
 bind(mm .. '+SHIFT+ALT+R', exec '~/.config/quickshell/ii/scripts/videos/record.sh --fullscreen --sound',
   { desc = 'Utilities: Record fullscreen', locked = true })
