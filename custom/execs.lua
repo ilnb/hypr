@@ -5,5 +5,5 @@ hl.on('hyprland.start', function()
 
   -- startup sound
   local path = os.getenv 'HOME' .. '/.config/hypr/custom/oxp.wav'
-  hl.exec_cmd('sleep 2; pw-play ' .. path)
+  hl.exec_cmd('sleep 2; pw-play --volume=0.4 ' .. path)
 end)
