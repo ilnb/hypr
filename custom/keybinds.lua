@@ -64,7 +64,9 @@ bind(mm .. '+C', function()
   if term:find 'kitty' then
     run(exec 'kitty -1 nvim')
   elseif term:find 'wezterm' then
-    run(exec(term .. ' start -- sh -c nvim'))
+    run(exec(term .. ' start -- nvim'))
+  elseif term:find 'ghostty' then
+    run(exec(term .. ' +new-window --title=editor --command=nvim'))
   else
     run(exec('notify-send "Hyprland" "Dont know "' .. term .. '"'))
   end

@@ -215,7 +215,8 @@ bind(mm .. '+I',
     [[/launch_first_available.sh "qs -p ~/.config/quickshell/ii/settings.qml" "systemsettings" "gnome-control-center" "better-control"]]),
   { desc = 'Apps: Settings' })
 bind('CTRL+SHIFT+Escape', exec(Hypr.hypr_scripts .. '/launch_first_available.sh '
-    .. [["gnome-system-monitor" "plasma-systemmonitor --page-name Processes" "command -v btop && wezterm start btop"]]),
+    ..
+    [["gnome-system-monitor" "plasma-systemmonitor --page-name Processes" "command -v btop && ghostty --command=btop" "command -v btop && wezterm start btop"]]),
   { desc = 'Apps: System monitor' })
 
 -- MISC

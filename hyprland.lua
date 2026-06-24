@@ -7,7 +7,7 @@ Hypr.explorer = 'thunar'
 Hypr.browser = 'zen-browser'
 Hypr.hypr_scripts = home .. '/.config/hypr/hyprland/scripts'
 Hypr.custom_scripts = home .. '/.config/hypr/custom/scripts'
-Hypr.terminal = Hypr.custom_scripts .. '/wezterm.sh'
+Hypr.terminal = 'ghostty'
 
 require 'hyprland.env'
 require 'custom.env'

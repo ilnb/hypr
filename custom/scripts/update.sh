@@ -35,7 +35,7 @@ if [ "$1" == "up" ] ; then
     term="${term:-$TERMINAL}"
     term=$(basename "$term")
     if [[ "$term" == "ghostty" ]]; then
-      ghostty --title=update --command="$command"
+      ghostty +new-window --title=systemupdate --command="$command"
     elif [[ "$term" == "kitty" ]]; then
       kitty --title systemupdate sh -c "${command}"
     elif [[ "$term" == "wezterm.sh" ]]; then
