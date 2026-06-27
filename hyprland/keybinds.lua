@@ -126,27 +126,29 @@ bind('CTRL+Print', function()
   run(exec 'grim - | wl-copy')
 end, { desc = 'Utilities: Screenshot >> clipboard & file', locked = true, non_consuming = true })
 -- Recording stuff
-bind(mm .. '+SHIFT+R', function()
+bind(mm .. '+R', function()
   run(qs_dsp 'regionRecord')
   run(exec 'qs -c ii ipc call TEST_ALIVE || ~/.config/quickshell/ii/scripts/videos/record.sh')
 end, { desc = 'Utilities: Record region (no sound)', locked = true })
+bind(mm .. '+SHIFT+R', exec '~/.config/quickshell/ii/scripts/videos/record.sh --fullscreen',
+  { desc = 'Utilities: Record fullscreen (no sound)', locked = true })
 bind(mm .. '+ALT+R', function()
   run(qs_dsp 'regionRecord')
-  run(exec 'qs -c ii ipc call TEST_ALIVE || ~/.config/quickshell/ii/scripts/videos/record.sh')
+  run(exec 'qs -c ii ipc call TEST_ALIVE || ~/.config/quickshell/ii/scripts/videos/record.sh --sound')
 end, { locked = true })
-bind(mm .. '+R', exec '~/.config/quickshell/ii/scripts/videos/record.sh --fullscreen',
-  { desc = 'Utilities: Record fullscreen (no sound)', locked = true })
 bind(mm .. '+SHIFT+ALT+R', exec '~/.config/quickshell/ii/scripts/videos/record.sh --fullscreen --sound',
   { desc = 'Utilities: Record fullscreen', locked = true })
 bind(mm .. '+SHIFT+ALT+mouse:273', exec(Hypr.hypr_scripts .. '/ai/primary-buffer-query.sh'), { desc = 'Utilities: Generate AI summary' })
 
 -- MEDIA
-bind(mm .. '+SHIFT+N',
-  exec [[playerctl next || playerctl position `bc <<< "100 * $(playerctl metadata mpris:length) / 1000000 / 100"`]],
-  { desc = 'Media: Next track', locked = true })
-bind('XF86AudioNext',
-  exec [[playerctl next || playerctl position `bc <<< "100 * $(playerctl metadata mpris:length) / 1000000 / 100"`]],
-  { locked = true })
+local media_next = function()
+  local f = io.popen('playerctl metadata mpris:length', 'r')
+  if not f then return end
+  local len = f:read '*n'
+  run(exec('playerctl next || playerctl position ' .. math.floor(len / 1000000)))
+end
+bind(mm .. '+SHIFT+N', media_next, { desc = 'Media: Next track', locked = true })
+bind('XF86AudioNext', media_next, { locked = true })
 bind(mm .. '+SHIFT+P', exec 'playerctl previous', { desc = 'Media: Previous track', locked = true })
 bind('XF86AudioPrev', exec 'playerctl previous', { locked = true })
 bind(mm .. '+SHIFT+Space', exec 'playerctl play-pause', { desc = 'Media: Play/pause', locked = true })
@@ -216,7 +218,7 @@ bind(mm .. '+I',
   { desc = 'Apps: Settings' })
 bind('CTRL+SHIFT+Escape', exec(Hypr.hypr_scripts .. '/launch_first_available.sh '
     ..
-    [["gnome-system-monitor" "plasma-systemmonitor --page-name Processes" "command -v btop && ghostty --command=btop" "command -v btop && wezterm start btop"]]),
+    [["gnome-system-monitor" "plasma-systemmonitor --page-name Processes" "command -v btop && ghostty +new-window --command=btop" "command -v btop && wezterm start btop"]]),
   { desc = 'Apps: System monitor' })
 
 -- MISC
