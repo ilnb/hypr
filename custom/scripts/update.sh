@@ -5,7 +5,7 @@ if [ ! -f /etc/arch-release ]; then
   exit 0
 fi
 
-scrDir=$(dirname "$(realpath "$0")")
+scr_dir=$(dirname "$(realpath "$0")")
 cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/end4"
 fpk_exup="command -v flatpak >/dev/null && flatpak update"
 temp_file="${cache_dir}/update_info"
@@ -24,7 +24,6 @@ if [ "$1" == "up" ] ; then
     done < "$temp_file"
 
     command="
-    sleep 0.2
     fastfetch
     printf '[Official] %-10s\n[AUR]      %-10s\n[Flatpak]  %-10s\n' '$official' '$aur' '$flatpak'
     yay -Syu
@@ -35,11 +34,11 @@ if [ "$1" == "up" ] ; then
     term="${term:-$TERMINAL}"
     term=$(basename "$term")
     if [[ "$term" == "ghostty" ]]; then
-      ghostty +new-window --title=systemupdate --command="$command"
+      ghostty +new-window --title=systemupdate -e sh -c "$command"
     elif [[ "$term" == "kitty" ]]; then
       kitty --title systemupdate sh -c "${command}"
     elif [[ "$term" == "wezterm.sh" ]]; then
-      $scrDir/wezterm.sh start -- sh -c "${command}"
+      $scr_dir/wezterm.sh start -- sh -c "${command}"
     elif [[ "$term" == "wezterm" ]]; then
       wezterm start -- sh -c "${command}"
     else

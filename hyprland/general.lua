@@ -152,7 +152,8 @@ local curves = {
   { 'standardDecel',            { type = 'bezier', points = { { 0, 0 }, { 0, 1 } } } },
   { 'menu_decel',               { type = 'bezier', points = { { 0.1, 1 }, { 0, 1 } } } },
   { 'menu_accel',               { type = 'bezier', points = { { 0.52, 0.03 }, { 0.72, 0.08 } } } },
-  { 'stall',                    { type = 'bezier', points = { { 1, -0.1 }, { 0.7, 0.85 } } } }
+  { 'stall',                    { type = 'bezier', points = { { 1, -0.1 }, { 0.7, 0.85 } } } },
+  { 'linear',                   { type = 'bezier', points = { { 0, 0 }, { 1, 1 } } } },
 }
 for _, curve in ipairs(curves) do
   hl.curve(table.unpack(curve))
@@ -173,6 +174,7 @@ local anims = {
   { leaf = 'specialWorkspaceIn',  speed = 2.8, bezier = 'emphasizedDecel', slide = 'slidevert' },
   { leaf = 'specialWorkspaceOut', speed = 1.2, bezier = 'emphasizedAccel', slide = 'slidevert' },
   { leaf = 'zoomFactor',          speed = 3,   bezier = 'standardDecel' },
+  -- { leaf = 'borderangle',         speed = 50,  bezier = 'linear',          style = 'loop' },
 }
 for _, anim in ipairs(anims) do
   if anim.enabled == nil then

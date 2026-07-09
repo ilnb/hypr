@@ -60,7 +60,7 @@ local cf = {
   { match = { class = 'com.gabm.satty' } },
   { match = { class = 'nwg-look' },                                 size = '568 446' },
   { match = { class = 'org.pulseaudio.pavucontrol' },               size = '542 343' },
-  { match = { class = 'blueman-manager' },                          size = '529 343' },
+  { match = { class = 'blueman-manager' },                          size = '600 400' },
   { match = { class = 'nm-applet' },                                size = '529 343' },
   { match = { initial_title = '(.*)Rename(.*)$' },                  size = '750 550' },
   { match = { initial_title = '(.*)Open(.*)$' },                    size = '750 550' },
