@@ -9,6 +9,7 @@ hl.on('hyprland.start', function()
   -- Core components (authentication, lock screen, notification daemon)
   exec 'gnome-keyring-daemon --start --components=secrets'
   exec 'hypridle'
+  exec 'udiskie --automount --notify'
   exec 'dbus-update-activation-environment --all'
   exec 'sleep 1 && dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP'
 
