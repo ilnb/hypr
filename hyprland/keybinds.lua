@@ -57,7 +57,7 @@ bind('XF86MonBrightnessDown', exec 'qs -c ii ipc call brightness decrement || br
 bind('XF86AudioRaiseVolume', exec 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ -l 1.5', { locked = true, repeating = true })
 bind('XF86AudioLowerVolume', exec 'wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-', { locked = true, repeating = true })
 
-bind('F10', exec 'wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle', { desc = 'Shell: Toggle audio mute', locked = true })
+bind('F10', exec 'wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle', { desc = 'Shell: Toggle mute', locked = true })
 bind('ALT+XF86AudioMute', exec 'wpctl set-mute @DEFAULT_SOURCE@ toggle', { locked = true })
 bind(mm .. '+ALT+M', exec 'wpctl set-mute @DEFAULT_SOURCE@ toggle', { desc = 'Shell: Toggle mic', locked = true })
 bind(mm .. '+CTRL+T', function()
@@ -218,7 +218,7 @@ bind(mm .. '+I',
   { desc = 'Apps: Settings' })
 bind('CTRL+SHIFT+Escape', exec(Hypr.hypr_scripts .. '/launch_first_available.sh '
     ..
-    [["gnome-system-monitor" "plasma-systemmonitor --page-name Processes" "command -v btop && ghostty +new-window --command=btop" "command -v btop && wezterm start btop"]]),
+    [["gnome-system-monitor" "plasma-systemmonitor --page-name Processes" "command -v btop && kitty -1 btop" "command -v btop && wezterm start btop"]]),
   { desc = 'Apps: System monitor' })
 
 -- MISC
