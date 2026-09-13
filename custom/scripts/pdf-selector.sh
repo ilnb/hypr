@@ -94,7 +94,7 @@ fi
 
 for i in "${!pdf_names[@]}"; do
   if [[ "${pdf_names[$i]}" == "$selected_pdf" ]]; then
-    xdg-open "${pdf_paths[$i]}" &
+    zathura "${pdf_paths[$i]}" &
     break
   fi
 done

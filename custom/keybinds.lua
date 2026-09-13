@@ -71,7 +71,7 @@ bind(mm .. '+C', function()
     run(exec('notify-send "Hyprland" "Dont know "' .. term .. '"'))
   end
 end, { desc = 'Apps: Code editor' })
-bind(mm .. '+F', exec(Hypr.hypr_scripts .. '/launch_first_available.sh' .. [[ "zen-browser" "firefox" "brave" "librewolf"]]),
+bind(mm .. '+F', exec(Hypr.hypr_scripts .. '/launch_first_available.sh' .. [[ "zen-beta" "zen-browser" "firefox" "brave" "librewolf"]]),
   { desc = 'Apps: Browser' })
 bind(mm .. '+SHIFT+M', exec 'flatpak run com.spotify.Client', { desc = 'Apps: Spotify' })
 bind(mm .. '+D', exec 'vesktop', { desc = 'Apps: Discord' })
