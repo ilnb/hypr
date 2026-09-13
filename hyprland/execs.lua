@@ -3,7 +3,7 @@ local exec = hl.exec_cmd
 hl.on('hyprland.start', function()
   -- Bar, wallpaper
   exec(Hypr.hypr_scripts .. '/start_geoclue_agent.sh')
-  exec('qs -c ii &')
+  exec 'qs -c ii &'
   exec(Hypr.custom_scripts .. '/__restore_video_wallpaper.sh')
 
   -- Core components (authentication, lock screen, notification daemon)
