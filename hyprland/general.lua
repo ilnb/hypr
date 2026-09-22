@@ -174,7 +174,7 @@ local anims = {
   { leaf = 'specialWorkspaceIn',  speed = 2.8, bezier = 'emphasizedDecel', slide = 'slidevert' },
   { leaf = 'specialWorkspaceOut', speed = 1.2, bezier = 'emphasizedAccel', slide = 'slidevert' },
   { leaf = 'zoomFactor',          speed = 3,   bezier = 'standardDecel' },
-  -- { leaf = 'borderangle',         speed = 50,  bezier = 'linear',          style = 'loop' },
+  { leaf = 'borderangle',         speed = 50,  bezier = 'linear',          style = 'loop' },
 }
 for _, anim in ipairs(anims) do
   if anim.enabled == nil then
