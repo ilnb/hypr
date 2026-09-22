@@ -30,5 +30,5 @@ hl.on('hyprland.start', function()
   )
 
   -- Cursor
-  exec 'hyprctl setcursor Dracula-cursors 24'
+  exec('hyprctl setcursor ' .. Hypr.cursor .. ' 24')
 end)
