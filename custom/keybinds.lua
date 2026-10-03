@@ -73,6 +73,6 @@ bind(mm .. '+C', function()
 end, { desc = 'Apps: Code editor' })
 bind(mm .. '+F', exec(Hypr.hypr_scripts .. '/launch_first_available.sh' .. [[ "zen-beta" "zen-browser" "firefox" "brave" "librewolf"]]),
   { desc = 'Apps: Browser' })
-bind(mm .. '+SHIFT+M', exec 'flatpak run com.spotify.Client', { desc = 'Apps: Spotify' })
+bind(mm .. '+SHIFT+M', exec 'spotify', { desc = 'Apps: Spotify' })
 bind(mm .. '+D', exec 'vesktop', { desc = 'Apps: Discord' })
 bind(mm .. '+SHIFT+C', exec('env WC_KB=1 ' .. Hypr.custom_scripts .. '/wayclick.sh'), { desc = 'Apps: Toggle wayclick' })

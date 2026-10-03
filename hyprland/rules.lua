@@ -3,6 +3,7 @@ local lr = hl.layer_rule
 
 wr { match = { class = '^()$', title = '^()$', }, no_blur = false }
 wr { match = { class = '.*' }, no_blur = false }
+wr { match = { class = '.*' }, suppress_event = 'maximize' }
 
 -- Floating
 local fl = {
@@ -109,6 +110,7 @@ local ii = {
   { match = { namespace = 'quickshell:cheatsheet' },          animation = 'slide bottom' },
   { match = { namespace = 'quickshell:dock' },                animation = 'slide bottom' },
   { match = { namespace = 'quickshell:lockWindowPusher' },    no_anim = true },
+  { match = { namespace = 'quickshell:background' },          blur = false },
   { match = { namespace = 'quickshell:mediaControls' },       ignore_alpha = 1 },
   { match = { namespace = 'quickshell:notificationPopup' },   animation = 'fade' },
   { match = { namespace = 'quickshell:osk' },                 animation = 'slide bottom', order = -1 },
