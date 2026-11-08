@@ -13,14 +13,10 @@ local run = function(d)
 end
 
 -- SHELL
-bind(mm .. '+Super_L', function()
-  run(qs_dsp 'searchToggleRelease')
-  run(exec 'qs -c ii ipc call TEST_ALIVE || pkill fuzzel || fuzzel')
-end, { desc = 'Shell: Toggle search' })
-bind(mm .. '+Super_R', function()
-  run(qs_dsp 'searchToggleRelease')
-  run(exec 'qs -c ii ipc call TEST_ALIVE || pkill fuzzel || fuzzel')
-end)
+hl.bind("SUPER + SUPER_L", qs_dsp 'searchToggleRelease', { release = true, description = "Shell: Toggle search" })
+hl.bind("SUPER + SUPER_R", qs_dsp 'searchToggleRelease', { release = true })
+bind(mm .. '+Super_L', exec 'qs -c ii ipc call TEST_ALIVE || pkill fuzzel || fuzzel', { release = true, desc = 'Shell: Toggle search' })
+bind(mm .. '+Super_R', exec 'qs -c ii ipc call TEST_ALIVE || pkill fuzzel || fuzzel', { release = true })
 for _, k in ipairs {
   'CTRL+Super_L',
   'CTRL+Super_R',
